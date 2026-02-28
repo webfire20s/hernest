@@ -88,6 +88,20 @@
         </li>
     </ul>
 
+    <?php if (isset($currentUser)) : ?>
+    <div style="padding: 16px 24px; border-top: 1px solid #f1f5f9;">
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px;">
+            <div style="font-size:0.9rem; font-weight:700; color:#1e293b;">
+                <?= htmlspecialchars($currentUser['full_name']) ?>
+            </div>
+            <div style="font-size:0.75rem; font-weight:600; color:#64748b; margin-top:4px;">
+                <?= htmlspecialchars($currentUser['role_name']) ?>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+    
+
     <div class="logout-box">
         <a href="../logout.php" class="nav-link logout-link">Logout</a>
     </div>

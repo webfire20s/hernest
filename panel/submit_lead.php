@@ -100,7 +100,7 @@ require 'sidebar.php';
 
                 <div class="input-group">
                     <label class="label">Select Service Type</label>
-                    <select name="service_id" class="form-input cursor-pointer" required>
+                    <select name="service_id" id="service_id" class="form-input cursor-pointer" required>
                         <option value="">Choose a service...</option>
                         <?php foreach($services as $service): ?>
                             <option value="<?= $service['id'] ?>">
@@ -108,6 +108,9 @@ require 'sidebar.php';
                             </option>
                         <?php endforeach; ?>
                     </select>
+                    <div id="commissionPreview" class="mt-3 text-sm font-semibold text-green-600 hidden">
+                        Projected Commission: ₹ <span id="commissionAmount">0.00</span>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -150,3 +153,39 @@ require 'sidebar.php';
         </div>
     </div>
 </div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const serviceSelect = document.getElementById('service_id');
+    const previewBox    = document.getElementById('commissionPreview');
+    const amountSpan    = document.getElementById('commissionAmount');
+
+    serviceSelect.addEventListener('change', function () {
+
+        const serviceId = this.value;
+
+        if (!serviceId) {
+            previewBox.classList.add('hidden');
+            return;
+        }
+
+        fetch('get_projected_commission.php?service_id=' + serviceId)
+            .then(response => response.json())
+            .then(data => {
+
+                if (data.amount > 0) {
+                    amountSpan.textContent = parseFloat(data.amount).toFixed(2);
+                    previewBox.classList.remove('hidden');
+                } else {
+                    previewBox.classList.add('hidden');
+                }
+
+            });
+
+    });
+
+});
+</script>
