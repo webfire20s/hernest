@@ -46,6 +46,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $currentUser['id']
     ]);
 
+    require_once '../includes/mail.php';
+
+    // Fetch admin email (hierarchy_level = 1)
+    $stmtAdmin = $pdo->query("
+        SELECT email FROM users
+        JOIN roles ON users.role_id = roles.id
+        WHERE roles.hierarchy_level = 1
+        LIMIT 1
+    ");
+    $adminEmail = $stmtAdmin->fetchColumn();
+
+    if ($adminEmail) {
+
+        // Get service name
+        $stmtService = $pdo->prepare("SELECT service_name FROM services WHERE id = ?");
+        $stmtService->execute([$_POST['service_id']]);
+        $serviceName = $stmtService->fetchColumn();
+
+        $subject = "New Lead Submitted - " . $serviceName;
+
+        $message = "
+            <h3>New Lead Submitted</h3>
+            <p><strong>Service:</strong> {$serviceName}</p>
+            <p><strong>Customer Name:</strong> " . htmlspecialchars($_POST['customer_name']) . "</p>
+            <p><strong>Customer Phone:</strong> " . htmlspecialchars($_POST['customer_phone']) . "</p>
+            <p><strong>Customer Email:</strong> " . htmlspecialchars($_POST['customer_email']) . "</p>
+            <p><strong>Address:</strong> " . htmlspecialchars($_POST['address']) . "</p>
+            <p><strong>Submitted By:</strong> " . htmlspecialchars($currentUser['full_name']) . "</p>
+            <p><strong>Submitted At:</strong> " . date('Y-m-d H:i:s') . "</p>
+        ";
+
+        // Send email (non-blocking logic)
+        @sendMail($adminEmail, $subject, $message);
+        
+    }
+
     header("Location: leads.php?submitted=1");
     exit;
 }
@@ -188,4 +224,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
-</script>
+</script>   
