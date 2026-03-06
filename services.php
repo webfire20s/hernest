@@ -17,6 +17,25 @@ $services = $stmt->fetchAll();
     .reveal.active { opacity: 1; transform: translateY(0); }
     .glass-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
     .service-card:hover .icon-bounce { transform: scale(1.1) rotate(5deg); }
+
+    /* Razorpay Button Styling */
+    .btn-pay {
+        background: #10b981; /* Emerald Green for trust/payment */
+        color: white;
+        padding: 10px 20px;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.3s;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    }
+    .btn-pay:hover {
+        background: #059669;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+    }
 </style>
 
 <section class="relative py-20 overflow-hidden reveal">
@@ -51,6 +70,10 @@ $services = $stmt->fetchAll();
                     
                     <div class="mt-auto pt-6 border-t border-slate-50 flex justify-between items-center">
                         <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Premium Service</span>
+                        <a href="https://razorpay.me/@krantikumarjain" target="_blank" class="btn-pay flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                            Pay Now
+                        </a>
                         <a href="contact.php?id=<?= $service['id'] ?>" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 hover:bg-blue-600 hover:text-white transition-all">
                             →
                         </a>

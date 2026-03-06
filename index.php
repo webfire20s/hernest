@@ -23,6 +23,10 @@
     </p>
 
     <div class="flex flex-col sm:flex-row gap-6 justify-center">
+        <a href="https://razorpay.me/@krantikumarjain" target="_blank" class="group px-10 py-5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl font-bold shadow-2xl shadow-emerald-200/50 hover:-translate-y-2 transition-all duration-300 flex items-center gap-3">
+            <svg class="w-5 h-5 text-emerald-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            Pay Now
+        </a>
         <a href="services.php" class="group px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold shadow-2xl hover:bg-blue-600 hover:-translate-y-2 transition-all duration-300 flex items-center gap-3">
             Explore All Services
             <span class="group-hover:translate-x-1 transition-transform">→</span>
