@@ -51,9 +51,14 @@ $leads = $stmt->fetchAll();
 </head>
 
 <div class="admin-main">
-    <div class="mb-10">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-10">
         <h2 class="text-3xl font-black text-slate-900 tracking-tight">Lead Management</h2>
         <p class="text-slate-500 text-sm mt-1">Review, track, and update the status of all customer applications.</p>
+        <div class="flex gap-3">
+            <a href="export_leads.php" class="inline-flex items-center bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-emerald-100">
+                    Export CSV
+            </a>
+        </div>
     </div>
 
     <div class="data-card">

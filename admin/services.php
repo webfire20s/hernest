@@ -45,10 +45,18 @@ $services = $pdo->query("
             <h2 class="text-3xl font-black text-slate-900 tracking-tight">Services Management</h2>
             <p class="text-slate-500 text-sm mt-1">Configure and monitor the financial services available in your network.</p>
         </div>
-        <a href="create_service.php" class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-100">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-            Add New Service
-        </a>
+        <div class="flex gap-3">
+            <a href="export_services.php" class="inline-flex items-center bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-emerald-100">
+                Export CSV
+            </a>
+
+            <a href="create_service.php" class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-100">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Add New Service
+            </a>
+        </div>
     </div>
 
     <div class="data-card">

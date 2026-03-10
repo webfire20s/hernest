@@ -85,9 +85,18 @@ $withdrawals = $stmt->fetchAll();
             <h2 class="text-3xl font-black text-slate-900 tracking-tight">Withdrawal Requests</h2>
             <p class="text-slate-500 text-sm mt-1">Review and process partner payout requests.</p>
         </div>
-        <div class="bg-slate-900 text-white px-4 py-2 rounded-2xl flex items-center gap-3">
-            <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-            <span class="text-xs font-bold uppercase tracking-widest">Payout Queue Live</span>
+        <div class="flex items-center gap-3">
+
+            <a href="export_withdrawals.php" 
+            class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-bold shadow">
+                Export CSV
+            </a>
+
+            <div class="bg-slate-900 text-white px-4 py-2 rounded-2xl flex items-center gap-3">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span class="text-xs font-bold uppercase tracking-widest">Payout Queue Live</span>
+            </div>
+
         </div>
     </div>
 

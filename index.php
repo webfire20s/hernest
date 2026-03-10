@@ -14,12 +14,12 @@
         The Future of Service Distribution
     </div>
     
-    <h1 class="text-6xl md:text-8xl font-extrabold text-slate-900 mb-8 tracking-tighter">
-        Empowering <span class="gradient-text">HERNEST</span>
+    <h1 class="text-6xl md:text-5xl font-extrabold text-slate-900 mb-8 tracking-tighter">
+        India’s #1 Platform for Part Time Work and Work from home – <span class="gradient-text">HERNEST</span>– Earn  ₹50K+ Monthly
     </h1>
     
     <p class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 leading-relaxed">
-        A sophisticated ecosystem delivering 15+ essential services—from competitive Loans and Insurance to cutting-edge Digital Marketing.
+        Hernest wealth  Partners earn upto ₹ 1 lakh per month! Join Us.
     </p>
 
     <div class="flex flex-col sm:flex-row gap-6 justify-center">
@@ -31,8 +31,8 @@
             Explore All Services
             <span class="group-hover:translate-x-1 transition-transform">→</span>
         </a>
-        <a href="login.php" class="px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition-all shadow-sm">
-            Partner Login
+        <a href="register_partner.php" class="px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition-all shadow-sm">
+            Become a Partner
         </a>
     </div>  
 </section>

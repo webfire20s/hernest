@@ -2,13 +2,17 @@
 require '../includes/auth.php';
 
 $currentLevel = $currentUser['hierarchy_level'];
-$nextLevel = $currentLevel + 1;
 
-$stmt = $pdo->prepare("SELECT id, role_name FROM roles WHERE hierarchy_level = ?");
-$stmt->execute([$nextLevel]);
-$role = $stmt->fetch();
+$stmt = $pdo->prepare("
+    SELECT id, role_name 
+    FROM roles 
+    WHERE hierarchy_level > ?
+    ORDER BY hierarchy_level ASC
+");
+$stmt->execute([$currentLevel]);
+$roles = $stmt->fetchAll();
 
-if (!$role) {
+if (!$roles) {
     die("You cannot create any further users.");
 }
 
@@ -25,11 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $insert->execute([
         $currentUser['id'],
-        $role['id'],
+        $_POST['role_id'],
         $name,
         $email,
         $password
     ]);
+
 
     header("Location: users.php");
     exit;
@@ -59,11 +64,21 @@ require 'sidebar.php';
             <div class="inline-flex items-center justify-center w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl mb-4">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0"></path></svg>
             </div>
-            <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Create <?= htmlspecialchars($role['role_name']) ?></h2>
+            <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Create Partner</h2>
             <p class="text-slate-400 text-xs mt-1 font-medium">Add a new partner to your direct network.</p>
         </div>
 
         <form method="POST" class="space-y-5">
+            <div>
+                <label class="label-text">Select Role</label>
+                <select name="role_id" class="input-field" required>
+                    <?php foreach ($roles as $r): ?>
+                        <option value="<?= $r['id'] ?>">
+                            <?= htmlspecialchars($r['role_name']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <div>
                 <label class="label-text">Partner Name</label>
                 <input type="text" name="full_name" class="input-field" placeholder="Full Name" required>

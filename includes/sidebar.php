@@ -103,12 +103,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <ul>
         <li><a href="dashboard.php" class="<?= $current_page == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a></li>
         <li><a href="users.php" class="<?= $current_page == 'users.php' ? 'active' : '' ?>">Users</a></li>
+        <li><a href="applications.php" class="<?= $current_page == 'applications.php' ? 'active' : '' ?>">Applications</a></li>
         <li><a href="leads.php" class="<?= $current_page == 'leads.php' ? 'active' : '' ?>">Leads</a></li>
         <li><a href="services.php" class="<?= $current_page == 'services.php' ? 'active' : '' ?>">Services</a></li>
         <li><a href="update_commission.php" class="<?= $current_page == 'update_commission.php' ? 'active' : '' ?>">Commissions</a></li>
         <li><a href="withdrawals.php" class="<?= $current_page == 'withdrawals.php' ? 'active' : '' ?>">Withdrawals</a></li>
         <li><a href="commission_report.php" class="<?= $current_page == 'commission_report.php' ? 'active' : '' ?>">Commission Report</a></li>
-        <li><a href="export_leads.php" class="<?= $current_page == 'export_leads.php' ? 'active' : '' ?>">Export</a></li>
         <li><a href="../logout.php">Logout</a></li>
     </ul>
 </div>

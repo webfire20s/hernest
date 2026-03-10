@@ -70,10 +70,10 @@ $services = $stmt->fetchAll();
                     
                     <div class="mt-auto pt-6 border-t border-slate-50 flex justify-between items-center">
                         <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Premium Service</span>
-                        <a href="https://razorpay.me/@krantikumarjain" target="_blank" class="btn-pay flex items-center gap-2">
+                        <!-- <a href="https://razorpay.me/@krantikumarjain" target="_blank" class="btn-pay flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
                             Pay Now
-                        </a>
+                        </a> -->
                         <a href="contact.php?id=<?= $service['id'] ?>" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 hover:bg-blue-600 hover:text-white transition-all">
                             →
                         </a>
