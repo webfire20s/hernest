@@ -39,11 +39,12 @@
 <header class="sticky top-0 z-[100] nav-blur border-b border-slate-200">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
         
-        <div class="flex items-center gap-2 shrink-0">
-            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-200">
-                H
-            </div>
-            <span class="text-xl sm:text-2xl font-bold tracking-tight text-slate-800">HERNEST</span>
+       <div class="flex items-center gap-2 shrink-0">
+            <a href="index.php" class="flex items-center shrink-0 hover:opacity-90 transition-opacity">
+                <div class="w-18 h-16 rounded-xl overflow-hidden flex items-center justify-center shadow-lg shadow-blue-100 border border-slate-100">
+                    <img src="assets/logo.jpeg" alt="HERNEST Logo" class="w-full h-full object-cover">
+                </div>
+            </a>
         </div>
 
         <div class="hidden md:flex items-center gap-8 font-medium text-slate-600">
