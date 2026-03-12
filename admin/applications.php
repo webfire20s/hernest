@@ -77,6 +77,18 @@ require '../includes/sidebar.php';
                         <td>
                             <div class="text-sm"><?= htmlspecialchars($app['email']) ?></div>
                             <div class="text-[11px] text-slate-400 font-medium"><?= htmlspecialchars($app['phone']) ?></div>
+
+                            <?php if(!empty($app['address'])): ?>
+                                <div class="text-[11px] text-slate-500 mt-1">
+                                    <?= htmlspecialchars($app['address']) ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if(!empty($app['pincode'])): ?>
+                                <div class="text-[10px] text-slate-400 font-semibold">
+                                    PIN: <?= htmlspecialchars($app['pincode']) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                         <td>
                             <span class="px-2 py-1 bg-indigo-50 text-indigo-500 rounded text-[9px] font-black uppercase tracking-wider border border-indigo-100">
