@@ -61,15 +61,16 @@ $services = $stmt->fetchAll();
         <h2 class="text-6xl md:text-8xl font-black text-slate-900 mt-4 mb-8 tracking-tightest">
             Empowering <span class="text-blue-600">Futures.</span>
         </h2>
-        <p class="text-slate-500 max-w-3xl mx-auto text-xl leading-relaxed font-medium">
-            Discover a curated suite of specialized financial and digital services meticulously crafted to accelerate your personal and professional growth.
-        </p>
         
-        <div class="flex flex-wrap justify-center gap-3 mt-14">
-            <button onclick="filterServices('all', this)" class="filter-btn active px-10 py-4 rounded-2xl font-bold text-sm bg-white shadow-sm">All Services</button>
-            <button onclick="filterServices('finance', this)" class="filter-btn px-10 py-4 rounded-2xl font-bold text-sm bg-white shadow-sm">Finance & Loans</button>
-            <button onclick="filterServices('insurance', this)" class="filter-btn px-10 py-4 rounded-2xl font-bold text-sm bg-white shadow-sm">Insurance</button>
-            <button onclick="filterServices('digital', this)" class="filter-btn px-10 py-4 rounded-2xl font-bold text-sm bg-white shadow-sm">Digital Growth</button>
+        <div class="flex flex-wrap justify-center gap-3 mt-14 max-w-6xl mx-auto">
+            <button onclick="filterServices('all', this)" class="filter-btn active px-8 py-4 rounded-2xl font-bold text-xs bg-white shadow-sm uppercase tracking-wider">All</button>
+            <button onclick="filterServices('financial', this)" class="filter-btn px-8 py-4 rounded-2xl font-bold text-xs bg-white shadow-sm uppercase tracking-wider">Financial Services</button>
+            <button onclick="filterServices('insurance', this)" class="filter-btn px-8 py-4 rounded-2xl font-bold text-xs bg-white shadow-sm uppercase tracking-wider">Insurance Services</button>
+            <button onclick="filterServices('investment', this)" class="filter-btn px-8 py-4 rounded-2xl font-bold text-xs bg-white shadow-sm uppercase tracking-wider">Investment & Growth</button>
+            <button onclick="filterServices('payments', this)" class="filter-btn px-8 py-4 rounded-2xl font-bold text-xs bg-white shadow-sm uppercase tracking-wider">Payments</button>
+            <button onclick="filterServices('travel', this)" class="filter-btn px-8 py-4 rounded-2xl font-bold text-xs bg-white shadow-sm uppercase tracking-wider">Travel</button>
+            <button onclick="filterServices('selling', this)" class="filter-btn px-8 py-4 rounded-2xl font-bold text-xs bg-white shadow-sm uppercase tracking-wider">Product Selling</button>
+            <button onclick="filterServices('tech', this)" class="filter-btn px-8 py-4 rounded-2xl font-bold text-xs bg-white shadow-sm uppercase tracking-wider">Tech & Marketing</button>
         </div>
     </div>
 </section>
@@ -79,21 +80,42 @@ $services = $stmt->fetchAll();
         <div id="servicesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             <?php foreach($services as $service): 
                 $name = strtolower($service['service_name']);
-                $category = 'digital';  
-                $iconPath = 'M13 10V3L4 14h7v7l9-11h-7z'; // Default bolt icon
                 
-                if (strpos($name, 'loan') !== false || strpos($name, 'finance') !== false || strpos($name, 'fund') !== false || strpos($name, 'trading') !== false || strpos($name, 'bank') !== false) {
-                    $category = 'finance';
-                    $iconPath = 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z';
-                } elseif (strpos($name, 'insurance') !== false || strpos($name, 'policy') !== false || strpos($name, 'health') !== false) {
+                // --- CATEGORY MAPPING LOGIC ---
+                if (preg_match('/loan|credit card|saving account|bank/', $name)) {
+                    $category = 'financial';
+                    $label = 'Financial Services';
+                    $icon = 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z';
+                } elseif (preg_match('/insurance|policy|health/', $name)) {
                     $category = 'insurance';
-                    $iconPath = 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z';
+                    $label = 'Insurance Services';
+                    $icon = 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z';
+                } elseif (preg_match('/mutual fund|sip|share|trading|investment/', $name)) {
+                    $category = 'investment';
+                    $label = 'Investment & Growth';
+                    $icon = 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6';
+                } elseif (preg_match('/recharge|dth|payment/', $name)) {
+                    $category = 'payments';
+                    $label = 'Digital & Payments';
+                    $icon = 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z';
+                } elseif (preg_match('/travel|flight|hotel|tour/', $name)) {
+                    $category = 'travel';
+                    $label = 'Tours & Travel';
+                    $icon = 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z';
+                } elseif (preg_match('/product|selling|ecommerce|distribution/', $name)) {
+                    $category = 'selling';
+                    $label = 'Product Selling';
+                    $icon = 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z';
+                } else {
+                    $category = 'tech';
+                    $label = 'Tech & Marketing';
+                    $icon = 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z';
                 }
             ?>
                 <div class="service-card reveal group p-10 rounded-[3rem] border border-slate-100 flex flex-col h-full min-h-[440px]" data-category="<?= $category ?>">
                     
-                    <div class="icon-box w-16 h-16 text-white rounded-[1.25rem] flex items-center justify-center mb-10 shrink-0 transition-transform duration-500 group-hover:rotate-[10deg] shadow-2xl shadow-slate-200">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?= $iconPath ?>"></path></svg>
+                    <div class="icon-box w-16 h-16 text-white rounded-[1.25rem] flex items-center justify-center mb-10 shrink-0 transition-transform duration-500 group-hover:rotate-[10deg] shadow-2xl shadow-slate-200" style="background: #0f172a;">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?= $icon ?>"></path></svg>
                     </div>
                     
                     <h3 class="text-3xl font-black text-slate-900 mb-5 group-hover:text-blue-600 transition-colors tracking-tight leading-none">
@@ -106,7 +128,7 @@ $services = $stmt->fetchAll();
                     
                     <div class="mt-auto pt-8 border-t border-slate-50 flex justify-between items-center">
                         <span class="text-[11px] font-black uppercase tracking-[0.2em] text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100/50">
-                            <?= ucfirst($category) ?>
+                            <?= $label ?>
                         </span>
                         <a href="contact.php?id=<?= $service['id'] ?>" class="w-14 h-14 bg-slate-50 rounded-full flex items-center justify-center text-slate-900 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-blue-200">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
@@ -121,7 +143,6 @@ $services = $stmt->fetchAll();
         </div>
     <?php endif; ?>
 </section>
-
 <section class="mb-40 mx-4 md:mx-10 bg-slate-900 rounded-[4rem] p-12 md:p-24 text-white reveal relative overflow-hidden">
     <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-600 opacity-10 blur-[120px] -z-10"></div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">

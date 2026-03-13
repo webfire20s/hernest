@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mt-8 pt-8 border-t border-slate-100 text-center">
                 <p class="text-slate-500 text-sm">
                     Don't have an account? 
-                    <a href="contact.php" class="text-blue-600 font-bold hover:underline">Become a Partner</a>
+                    <a href="register_partner.php" class="text-blue-600 font-bold hover:underline">Become a Partner</a>
                 </p>
             </div>
         </div>
