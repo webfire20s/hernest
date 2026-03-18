@@ -1,193 +1,335 @@
 <?php require 'partials/header.php'; ?>
 
 <style>
-    /* Premium Animation Classes */
+    :root {
+        --fintech-blue: #2563eb;
+        --fintech-emerald: #10b981;
+        --fintech-dark: #020617;
+    }
+
+    /* --- Cinematic Cross-Fade Slider --- */
+    .hero-wrapper {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: var(--fintech-dark);
+    }
+
+    .slider-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+
+    .slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transform: scale(1.1);
+        transition: opacity 2s ease-in-out, transform 8s linear;
+    }
+
+    .slide.active {
+        opacity: 0.4; /* Controlled brightness for text legibility */
+        transform: scale(1);
+        z-index: 2;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 0%, rgba(2, 6, 23, 0.9) 100%);
+        z-index: 3;
+    }
+
+    /* --- Partner Edge Glassmorphism --- */
+    .edge-card {
+        background: white;
+        border: 1px solid #f1f5f9;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .edge-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 40px 80px -15px rgba(2, 6, 23, 0.1);
+        border-color: var(--fintech-blue);
+    }
+
+    /* --- Animations --- */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
-    .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); }
-    .gradient-text { background: linear-gradient(135deg, #1e40af 0%, #4338ca 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .step-line { position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: #e2e8f0; z-index: -1; }
 </style>
 
-<section class="py-24 flex flex-col items-center text-center reveal">
-    <div class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-blue-600 uppercase bg-blue-50 rounded-full animate-bounce">
-        The Future of Service Distribution
+<div class="hero-wrapper">
+    <div class="slider-bg">
+        <div class="slide active" style="background-image: url('assets/hero/photo1.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/hero/photo2.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/hero/photo3.jpg');"></div>
+        <div class="slide" style="background-image: url('assets/hero/photo4.jpg');"></div>
     </div>
-    
-    <h1 class="text-6xl md:text-5xl font-extrabold text-slate-900 mb-8 tracking-tighter">
-        India’s #1 Platform for Part Time Work and Work from home – <span class="gradient-text">HERNEST</span>– Earn  ₹50K+ Monthly
-    </h1>
-    
-    <p class="max-w-3xl mx-auto text-xl text-slate-500 mb-12 leading-relaxed">
-        Hernest wealth  Partners earn upto ₹ 1 lakh per month! Join Us.
-    </p>
+    <div class="hero-overlay"></div>
 
-    <div class="flex flex-col sm:flex-row gap-6 justify-center">
-        <a href="https://razorpay.me/@krantikumarjain" target="_blank" class="group px-10 py-5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl font-bold shadow-2xl shadow-emerald-200/50 hover:-translate-y-2 transition-all duration-300 flex items-center gap-3">
-            <svg class="w-5 h-5 text-emerald-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-            Pay Now
-        </a>
-        <a href="services.php" class="group px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold shadow-2xl hover:bg-blue-600 hover:-translate-y-2 transition-all duration-300 flex items-center gap-3">
-            Explore All Services
-            <span class="group-hover:translate-x-1 transition-transform">→</span>
-        </a>
-        <a href="register_partner.php" class="px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition-all shadow-sm">
-            Become a Partner
-        </a>
-    </div>  
-</section>
-
-<section class="mb-32 grid grid-cols-2 md:grid-cols-4 gap-8 reveal">
-    <div class="text-center p-8 glass-card rounded-3xl shadow-sm">
-        <div class="text-4xl font-black text-slate-900 mb-2">15+</div>
-        <div class="text-sm font-bold text-slate-400 uppercase tracking-widest">Active Services</div>
-    </div>
-    <div class="text-center p-8 glass-card rounded-3xl shadow-sm">
-        <div class="text-4xl font-black text-blue-600 mb-2">24/7</div>
-        <div class="text-sm font-bold text-slate-400 uppercase tracking-widest">Digital Support</div>
-    </div>
-    <div class="text-center p-8 glass-card rounded-3xl shadow-sm">
-        <div class="text-4xl font-black text-slate-900 mb-2">100%</div>
-        <div class="text-sm font-bold text-slate-400 uppercase tracking-widest">Secure Platform</div>
-    </div>
-    <div class="text-center p-8 glass-card rounded-3xl shadow-sm">
-        <div class="text-4xl font-black text-blue-600 mb-2">Instant</div>
-        <div class="text-sm font-bold text-slate-400 uppercase tracking-widest">Payouts/Access</div>
-    </div>
-</section>
-
-<section class="mb-32 reveal px-4">
-    <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-slate-900 mb-4">How It Works</h2>
-        <p class="text-slate-500">Getting started with HERNEST is simple and efficient.</p>
-    </div>
-    <div class="relative grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-        <div class="hidden md:block step-line"></div>
-        <div class="relative bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-6 shadow-lg">1</div>
-            <h3 class="text-xl font-bold mb-2">Select Service</h3>
-            <p class="text-slate-500 text-sm">Choose from our vast catalog of 15+ financial and digital products.</p>
-        </div>
-        <div class="relative bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-6 shadow-lg">2</div>
-            <h3 class="text-xl font-bold mb-2">Submit Details</h3>
-            <p class="text-slate-500 text-sm">Upload required documents through our high-security digital portal.</p>
-        </div>
-        <div class="relative bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-6 shadow-lg">3</div>
-            <h3 class="text-xl font-bold mb-2">Fast Approval</h3>
-            <p class="text-slate-500 text-sm">Receive instant confirmation and enjoy seamless service fulfillment.</p>
-        </div>
-    </div>
-</section>
-
-<section class="mb-32 reveal">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-        <div class="max-w-xl">
-            <h2 class="text-4xl font-bold text-slate-900 mb-4 tracking-tight">One Platform, Every Solution.</h2>
-            <p class="text-slate-500">We've categorized our 15+ offerings into three core pillars to help you find exactly what you need.</p>
-        </div>
-        <a href="services.php" class="text-blue-600 font-bold hover:underline flex items-center gap-2">
-            View the Full Catalog
-        </a>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div class="group p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:border-blue-500 transition-all duration-500">
-            <div class="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-8 rotate-3 group-hover:rotate-0 transition-transform duration-500">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-slate-900">Capital & Loans</h3>
-            <ul class="space-y-3 text-slate-500">
-                <li class="flex items-center gap-2"><span>•</span> Personal & Business Loans</li>
-                <li class="flex items-center gap-2"><span>•</span> Loan Against Property</li>
-                <li class="flex items-center gap-2"><span>•</span> Home Financing</li>
-            </ul>
+    <div class="relative z-10 text-center px-6 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 text-[10px] font-black tracking-[0.4em] text-blue-400 uppercase bg-blue-500/10 rounded-full border border-blue-500/20 backdrop-blur-md">
+            Empowering Financial Independence
         </div>
 
-        <div class="group p-10 bg-slate-900 rounded-[2.5rem] shadow-xl hover:shadow-2xl transition-all duration-500">
-            <div class="w-16 h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center mb-8 -rotate-3 group-hover:rotate-0 transition-transform duration-500">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-white">Full-Spectrum Insurance</h3>
-            <ul class="space-y-3 text-slate-400">
-                <li class="flex items-center gap-2"><span>•</span> Life & Health Coverage</li>
-                <li class="flex items-center gap-2"><span>•</span> Motor Vehicle Insurance</li>
-                <li class="flex items-center gap-2"><span>•</span> Mutual Fund Investments</li>
-            </ul>
-        </div>
+        <h1 class="text-6xl md:text-9xl font-black text-white mb-8 tracking-tighter leading-[0.9]">
+            India’s #1 Fintech <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Infrastructure.</span>
+        </h1>
 
-        <div class="group p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 hover:border-blue-500 transition-all duration-500">
-            <div class="w-16 h-16 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-8 rotate-3 group-hover:rotate-0 transition-transform duration-500">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 21l3-1 3 1-.75-4M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            </div>
-            <h3 class="text-2xl font-bold mb-4 text-slate-900">Digital Growth</h3>
-            <ul class="space-y-3 text-slate-500">
-                <li class="flex items-center gap-2"><span>•</span> Marketing & Course Selling</li>
-                <li class="flex items-center gap-2"><span>•</span> Mobile & DTH Recharge</li>
-                <li class="flex items-center gap-2"><span>•</span> Travel & Hotel Booking</li>
-            </ul>
-        </div>
-    </div>
-</section>
+        <p class="max-w-2xl mx-auto text-xl text-slate-400 mb-14 leading-relaxed">
+            Join 10,000+ Partners. Distribute premium products and earn up to <span class="text-white font-bold">₹1 Lakh monthly</span> with the HERNEST Digital Stack.
+        </p>
 
-<section class="mb-32 reveal bg-slate-50 rounded-[3rem] p-12 md:p-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div>
-            <h2 class="text-4xl font-bold text-slate-900 mb-6 leading-tight">Bank-Grade Security for Your Peace of Mind</h2>
-            <div class="space-y-6 text-slate-600">
-                <div class="flex gap-4">
-                    <div class="shrink-0 w-6 h-6 text-emerald-500">✓</div>
-                    <p><span class="font-bold text-slate-800">256-Bit Encryption:</span> Your data and documents are protected by industry-leading security protocols.</p>
-                </div>
-                <div class="flex gap-4">
-                    <div class="shrink-0 w-6 h-6 text-emerald-500">✓</div>
-                    <p><span class="font-bold text-slate-800">Privacy First:</span> We never share your personal information with third-party marketers.</p>
-                </div>
-                <div class="flex gap-4">
-                    <div class="shrink-0 w-6 h-6 text-emerald-500">✓</div>
-                    <p><span class="font-bold text-slate-800">Verified Providers:</span> Every service on our platform is sourced from vetted, premium institutions.</p>
-                </div>
-            </div>
-        </div>
-        <div class="relative flex justify-center">
-            <div class="w-64 h-80 bg-blue-600 rounded-3xl shadow-2xl relative rotate-3 flex items-center justify-center overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                <svg class="w-24 h-24 text-white opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            </div>
-            <div class="absolute -bottom-6 -left-6 w-48 h-48 glass-card rounded-2xl -rotate-6 flex flex-col items-center justify-center p-6 shadow-xl">
-                 <div class="text-emerald-500 text-3xl font-black mb-1">SECURE</div>
-                 <div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none">Verified by HERNEST</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="bg-gradient-to-br from-blue-700 to-indigo-900 rounded-[3rem] p-12 md:p-24 text-center text-white mb-20 relative overflow-hidden reveal">
-    <div class="relative z-10">
-        <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">Ready to transform your<br>Service Distribution?</h2>
-        <div class="flex flex-wrap justify-center gap-6">
-            <a href="services.php" class="px-12 py-5 bg-white text-blue-700 font-bold rounded-2xl hover:scale-105 transition-transform">
-                Get Started Now
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a href="register_partner.php" class="px-14 py-6 bg-blue-600 text-white rounded-2xl font-bold shadow-2xl shadow-blue-600/20 hover:bg-blue-700 transition-all">
+                Become a Partner
+            </a>
+            <a href="services.php" class="px-14 py-6 bg-white/5 text-white backdrop-blur-md border border-white/10 rounded-2xl font-bold hover:bg-white/10 transition-all">
+                Explore Services
             </a>
         </div>
     </div>
-    <div class="absolute -top-24 -right-24 w-64 h-64 bg-white opacity-10 rounded-full"></div>
-    <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-400 opacity-20 rounded-full"></div>
+</div>
+
+<section class="py-12 bg-slate-950 border-y border-white/5 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center gap-8">
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+            </div>
+            <div>
+                <p class="text-white font-black text-xl tracking-tighter">₹5Cr+</p>
+                <p class="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Disbursed This Year</p>
+            </div>
+        </div>
+        </div>
+</section>
+
+<section class="py-32 bg-white px-6 relative overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50/50 via-transparent to-transparent -z-10"></div>
+
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+            <div class="max-w-2xl reveal">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="w-8 h-px bg-blue-600"></span>
+                    <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em]">Exclusive Benefits</span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tightest leading-none">
+                    The Partner <span class="text-blue-600 italic">Edge.</span>
+                </h2>
+                <p class="text-slate-500 text-xl leading-relaxed font-medium">
+                    We don't just provide a platform; we provide a <span class="text-slate-900 underline decoration-blue-200 underline-offset-8">complete business-in-a-box</span> for the modern entrepreneur.
+                </p>
+            </div>
+            
+            <div class="hidden md:block reveal" style="transition-delay: 0.2s;">
+                <div class="p-5 bg-white rounded-[2rem] border border-slate-100 flex items-center gap-5 shadow-2xl shadow-slate-200/50">
+                    <div class="flex -space-x-4">
+                        <img src="https://i.pravatar.cc/100?img=11" class="w-12 h-12 rounded-full border-4 border-white shadow-sm" alt="User">
+                        <img src="https://i.pravatar.cc/100?img=12" class="w-12 h-12 rounded-full border-4 border-white shadow-sm" alt="User">
+                        <img src="https://i.pravatar.cc/100?img=13" class="w-12 h-12 rounded-full border-4 border-white shadow-sm" alt="User">
+                        <div class="w-12 h-12 rounded-full border-4 border-white bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">+10k</div>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Current Community</p>
+                        <p class="text-sm font-bold text-slate-900">Active Wealth Partners</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="edge-card group relative p-10 md:p-14 rounded-[3.5rem] bg-white border border-slate-100 transition-all duration-500 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-200/40 reveal">
+                <div class="absolute top-8 right-8 text-slate-100 group-hover:text-blue-50 transition-colors">
+                    <span class="text-6xl font-black italic">01</span>
+                </div>
+                <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mb-10 group-hover:bg-blue-600 group-hover:text-white group-hover:rotate-[10deg] transition-all duration-500 shadow-xl shadow-blue-100/50 group-hover:shadow-blue-600/30">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="text-3xl font-black mb-5 text-slate-900 tracking-tight">Instant Payouts</h3>
+                <p class="text-slate-500 leading-relaxed mb-8 text-lg font-medium">Real-time tracking of your earnings with immediate withdrawal options directly to your primary bank account.</p>
+                <div class="h-1 w-12 bg-blue-600 rounded-full group-hover:w-full transition-all duration-700"></div>
+            </div>
+
+            <div class="edge-card group relative p-10 md:p-14 rounded-[3.5rem] bg-slate-950 text-white border-none shadow-2xl shadow-blue-900/20 reveal" style="transition-delay: 0.1s;">
+                <div class="absolute top-8 right-8 text-slate-100 group-hover:text-blue-50 transition-colors">
+                    <span class="text-6xl font-black italic">02</span>
+                </div>
+                <div class="w-20 h-20 bg-blue-600 text-white rounded-3xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-blue-500/20">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <h3 class="text-3xl font-black mb-5 text-slate-900 tracking-tight">Expert Academy</h3>
+                <p class="text-slate-400 leading-relaxed mb-8 text-lg font-medium">Exclusive access to "Hernest Academy" featuring digital marketing tactics and high-conversion sales webinars.</p>
+                <div class="h-1 w-12 bg-blue-400 rounded-full group-hover:w-full transition-all duration-700"></div>
+            </div>
+
+            <div class="edge-card group relative p-10 md:p-14 rounded-[3.5rem] bg-white border border-slate-100 transition-all duration-500 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-200/40 reveal" style="transition-delay: 0.2s;">
+                <div class="absolute top-8 right-8 text-slate-100 group-hover:text-blue-50 transition-colors">
+                    <span class="text-6xl font-black italic">03</span>
+                </div>
+                <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl flex items-center justify-center mb-10 group-hover:bg-blue-600 group-hover:text-white group-hover:rotate-[10deg] transition-all duration-500 shadow-xl shadow-blue-100/50 group-hover:shadow-blue-600/30">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+                <h3 class="text-3xl font-black mb-5 text-slate-900 tracking-tight">Smart Analytics</h3>
+                <p class="text-slate-500 leading-relaxed mb-8 text-lg font-medium">Powerful real-time dashboard to track customer leads, pending approvals, and your monthly revenue trends.</p>
+                <div class="h-1 w-12 bg-blue-600 rounded-full group-hover:w-full transition-all duration-700"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">Our Core Offerings</h2>
+                <p class="text-slate-500 text-lg">We have curated the best financial and digital services to ensure our partners have a diverse portfolio to offer their clients.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Loan Card -->
+                <div class="service-card group bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm reveal">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-8 shadow-lg shadow-blue-200">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Capital & Loans</h3>
+                    <p class="text-slate-500 mb-8 leading-relaxed">Helping businesses and individuals secure the right capital at competitive rates.</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-blue-500"></i> Business & Personal Loans
+                        </li>
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-blue-500"></i> Loan Against Property
+                        </li>
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-blue-500"></i> Instant Approval Portal
+                        </li>
+                    </ul>
+                    <a href="services.php" class="w-full py-4 px-6 bg-slate-50 text-slate-900 group-hover:bg-blue-600 group-hover:text-white rounded-2xl font-bold flex items-center justify-center gap-2 transition-all">
+                        View Details <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Insurance Card -->
+                <div class="service-card group bg-slate-900 p-10 rounded-[2.5rem] shadow-2xl reveal">
+                    <div class="w-16 h-16 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-8 shadow-lg shadow-emerald-500/20">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Full Protection</h3>
+                    <p class="text-slate-400 mb-8 leading-relaxed">Comprehensive insurance solutions to safeguard what matters most to you.</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-300">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i> Life & Health Coverage
+                        </li>
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-300">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i> Motor & Vehicle Insurance
+                        </li>
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-300">
+                            <i class="fa-solid fa-circle-check text-emerald-400"></i> General Assets Protection
+                        </li>
+                    </ul>
+                    <a href="services.php" class="w-full py-4 px-6 bg-white/10 text-white group-hover:bg-emerald-500 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all">
+                        Learn More <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Digital Card -->
+                <div class="service-card group bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm reveal">
+                    <div class="w-16 h-16 bg-purple-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-8 shadow-lg shadow-purple-200">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Digital Services</h3>
+                    <p class="text-slate-500 mb-8 leading-relaxed">Modern tools for modern times. Digital recharges, bookings, and more.</p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-purple-500"></i> Mobile & DTH Recharge
+                        </li>
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-purple-500"></i> Course & Skill Distribution
+                        </li>
+                        <li class="flex items-center gap-3 font-semibold text-sm text-slate-700">
+                            <i class="fa-solid fa-circle-check text-purple-500"></i> Travel & Hotel Bookings
+                        </li>
+                    </ul>
+                    <a href="services.php" class="w-full py-4 px-6 bg-slate-50 text-slate-900 group-hover:bg-purple-600 group-hover:text-white rounded-2xl font-bold flex items-center justify-center gap-2 transition-all">
+                        Explore <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="py-32 bg-slate-50 px-6 rounded-[5rem] mx-4 mb-20 reveal">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+        <div>
+            <h2 class="text-5xl font-black text-slate-900 mb-8 tracking-tighter">Calculate Your <br><span class="text-emerald-500">Earnings.</span></h2>
+            <p class="text-slate-500 text-lg mb-10 leading-relaxed">Adjust the sliders to see how much you can potentially earn by distributing different services to your network.</p>
+            
+            <div class="space-y-10">
+                <div class="space-y-4">
+                    <div class="flex justify-between font-bold text-slate-700">
+                        <span>Loans Disbursed / Month</span>
+                        <span id="loanValue">50+</span>
+                    </div>
+                    <input type="range" min="1" max="100" value="55" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600" oninput="updateCalc()">
+                </div>
+                <div class="space-y-4">
+                    <div class="flex justify-between font-bold text-slate-700">
+                        <span>Insurance Policies / Month</span>
+                        <span id="insValue">70+</span>
+                    </div>
+                    <input type="range" min="1" max="100" value="75" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500" oninput="updateCalc()">
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-900 p-12 rounded-[3rem] text-center shadow-3xl">
+            <p class="text-slate-400 font-bold uppercase tracking-[0.3em] text-[10px] mb-6">Estimated Monthly Profit</p>
+            <div class="text-7xl md:text-8xl font-black text-white mb-10 tracking-tighter">₹<span id="totalProfit">24,500</span></div>
+            <a href="register_partner.php" class="w-full block py-6 bg-emerald-500 text-white font-black rounded-2xl hover:bg-emerald-600 transition-all">Claim This Opportunity</a>
+        </div>
+    </div>
 </section>
 
 <script>
+    // --- Auto-Slide Logic ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+    setInterval(nextSlide, 2000); // Change slide every 5 seconds
+
+    // --- Calculator Logic ---
+    function updateCalc() {
+        const loans = document.querySelectorAll('input[type="range"]')[0].value;
+        const ins = document.querySelectorAll('input[type="range"]')[1].value;
+        
+        document.getElementById('loanValue').innerText = loans;
+        document.getElementById('insValue').innerText = ins;
+        
+        // Mock math: Loan comm = 4000, Ins comm = 500
+        const total = (loans * 4000) + (ins * 500);
+        document.getElementById('totalProfit').innerText = total.toLocaleString('en-IN');
+    }
+
+    // --- Intersection Observer ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(section => {
-        observer.observe(section);
-    });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 <?php require 'partials/footer.php'; ?>

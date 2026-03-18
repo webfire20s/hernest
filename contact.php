@@ -2,7 +2,7 @@
 require 'includes/db.php';
 require 'partials/header.php';
 
-$message_sent = false; // Internal flag for UI styling only
+$message_sent = false; 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $stmt = $pdo->prepare("INSERT INTO contact_messages (name,email,message) VALUES (?,?,?)");
     $stmt->execute([
@@ -15,104 +15,164 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 ?>
 
 <style>
-    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    :root {
+        --primary: #2563eb;
+        --dark-bg: #0f172a;
+    }
+
+    /* --- Sophisticated Motion --- */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Floating Background Elements */
+    .blob {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+        z-index: -1;
+        filter: blur(60px);
+    }
+
+    /* Form Modernization */
     .form-input { 
         width: 100%;
-        padding: 1rem;
-        background: #f8fafc;
+        padding: 1.25rem;
+        background: #fdfdfe;
         border: 1px solid #e2e8f0;
-        border-radius: 0.75rem;
-        transition: all 0.3s ease;
+        border-radius: 1.25rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        font-weight: 500;
     }
     .form-input:focus {
         background: #ffffff;
-        border-color: #2563eb;
+        border-color: var(--primary);
         outline: none;
-        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15);
+        transform: translateY(-2px);
+    }
+
+    /* Glass Info Card */
+    .info-card {
+        background: var(--dark-bg);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .info-card::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%; width: 200%; height: 200%;
+        background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .status-pulse {
+        width: 10px;
+        height: 10px;
+        background: #10b981;
+        border-radius: 50%;
+        position: relative;
+    }
+    .status-pulse::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 2px solid #10b981;
+        animation: pulse-out 2s infinite;
+    }
+    @keyframes pulse-out {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(2.5); opacity: 0; }
     }
 </style>
 
-<section class="py-12 reveal">
-    <div class="max-w-5xl mx-auto">
+<section class="relative py-32 overflow-hidden bg-white">
+    <div class="blob top-0 -left-20"></div>
+    <div class="blob bottom-0 -right-20"></div>
+
+    <div class="max-w-7xl mx-auto px-6">
         
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">Get in Touch</h2>
-            <p class="text-slate-500 text-lg">Have questions about our 15+ services? Our team is here to help.</p>
+        <div class="text-center mb-24 reveal">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
+                <div class="status-pulse"></div>
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600">Response Time: < 2 Hours</span>
+            </div>
+            <h1 class="text-7xl md:text-9xl font-black text-slate-900 tracking-tightest leading-[0.85] mb-8">
+                Connect. <br><span class="text-blue-600">Collaborate.</span>
+            </h1>
+            <p class="text-slate-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+                Have questions about our 15+ services? Our team is here to help you scale your digital infrastructure.
+            </p>
         </div>
 
         <?php if($message_sent): ?>
-            <div class="mb-10 p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-700 flex items-center gap-4 animate-bounce">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"></path></svg>
-                <p class="font-bold text-lg">Message sent successfully. We'll get back to you soon!</p>
+            <div class="max-w-4xl mx-auto mb-16 p-8 bg-emerald-50 border border-emerald-100 rounded-[2.5rem] text-emerald-800 flex items-center gap-6 animate-in slide-in-from-top duration-700">
+                <div class="w-14 h-14 bg-emerald-500 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-emerald-200">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                    <p class="text-2xl font-black tracking-tight">Transmission Received.</p>
+                    <p class="font-medium opacity-80">Message sent successfully. We'll get back to you soon!</p>
+                </div>
             </div>
         <?php endif; ?>
 
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
-            <div class="lg:col-span-2 space-y-8">
-                <div class="p-8 bg-slate-900 rounded-[2rem] text-white shadow-xl">
-                    <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+            <div class="lg:col-span-4 flex flex-col gap-6 reveal">
+                <div class="info-card p-10 rounded-[3rem] text-white shadow-2xl flex-grow">
+                    <h3 class="text-3xl font-black mb-10 tracking-tight">Global Reach. <br><span class="text-blue-500">Local Support.</span></h3>
                     
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            </div>
-                            <div>
-                                <p class="text-slate-400 text-xs uppercase font-bold tracking-widest">Email Us</p>
-                                <p class="text-lg">digifinmatrix@gmail.com</p>
-                            </div>
+                    <div class="space-y-10">
+                        <div class="group cursor-pointer">
+                            <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mb-2 group-hover:text-blue-400 transition-colors">Direct Terminal</p>
+                            <p class="text-xl font-bold">digifinmatrix@gmail.com</p>
                         </div>
 
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                            </div>
-                            <div>
-                                <p class="text-slate-400 text-xs uppercase font-bold tracking-widest">Call Us</p>
-                                <p class="text-lg">+91 9829008838</p>
-                            </div>
+                        <div class="group cursor-pointer">
+                            <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mb-2 group-hover:text-blue-400 transition-colors">Hotline</p>
+                            <p class="text-xl font-bold">+91 9829008838</p>
                         </div>
 
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            </div>
-                            <div>
-                                <p class="text-slate-400 text-xs uppercase font-bold tracking-widest">Office</p>
-                                <p class="text-lg">4 k 3 Pratap Nagar Jodhpur - 342003</p>
-                            </div>
+                        <div class="group cursor-pointer">
+                            <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mb-2 group-hover:text-blue-400 transition-colors">Headquarters</p>
+                            <p class="text-lg font-medium leading-relaxed">4 k 3 Pratap Nagar <br>Jodhpur - 342003</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-8 bg-blue-50 border border-blue-100 rounded-[2rem]">
-                    <h4 class="font-bold text-blue-900 mb-2">24/7 Support</h4>
-                    <p class="text-blue-700 text-sm leading-relaxed">Our distribution partners receive priority support. Login to your dashboard for live chat options.</p>
+                <div class="p-10 bg-blue-600 rounded-[3rem] text-white shadow-xl shadow-blue-200/50 reveal" style="transition-delay: 0.2s;">
+                    <h4 class="text-xl font-black mb-4 italic">Institutional Support</h4>
+                    <p class="text-blue-100 text-sm leading-relaxed font-medium opacity-90">Our distribution partners receive priority support. Login to your dashboard for live chat options.</p>
                 </div>
             </div>
 
-            <div class="lg:col-span-3 bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50">
-                <form method="POST" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="lg:col-span-8 bg-slate-50 p-8 md:p-16 rounded-[4rem] border border-slate-100 reveal" style="transition-delay: 0.3s;">
+                <form method="POST" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2 ml-1">Your Name</label>
-                            <input type="text" name="name" class="form-input" placeholder="Yor Name" required>
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Identity</label>
+                            <input type="text" name="name" class="form-input" placeholder="Your Name" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 mb-2 ml-1">Your Email</label>
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Digital Address</label>
                             <input type="email" name="email" class="form-input" placeholder="Your Email" required>
                         </div>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2 ml-1">Message</label>
-                        <textarea name="message" rows="5" class="form-input" placeholder="How can we help you with our services?" required></textarea>
+                        <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">How can we help?</label>
+                        <textarea name="message" rows="6" class="form-input" placeholder="How can we help you with our services?" required></textarea>
                     </div>
 
-                    <button type="submit" class="w-full py-4 bg-blue-600 text-white font-bold rounded-xl shadow-lg shadow-blue-200 hover:bg-slate-900 hover:-translate-y-1 transition-all">
-                        Send Message
+                    <button type="submit" class="group relative w-full py-5 bg-slate-900 text-white font-black rounded-2xl overflow-hidden transition-all hover:bg-blue-600 hover:shadow-2xl hover:shadow-blue-300">
+                        <span class="relative z-10 flex items-center justify-center gap-3">
+                            Initiate Inquiry
+                            <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </span>
                     </button>
                 </form>
             </div>
@@ -124,12 +184,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <script>
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.1 });
-
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 

@@ -11,11 +11,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $price = $_POST['base_price'];
 
+    /* ✅ NEW: Image Upload Logic */
+    $imageName = null;
+
+    if (!empty($_FILES['service_image']['name'])) {
+
+        $uploadDir = '../uploads/services/';
+
+        // Create folder if not exists
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $imageName = time() . '_' . basename($_FILES['service_image']['name']);
+        $targetFile = $uploadDir . $imageName;
+
+        move_uploaded_file($_FILES['service_image']['tmp_name'], $targetFile);
+    }
+
+    /* ✅ UPDATED INSERT (extended, not changed) */
     $stmt = $pdo->prepare("
-        INSERT INTO services (service_name, description, base_price)
-        VALUES (?, ?, ?)
+        INSERT INTO services (service_name, description, base_price, image)
+        VALUES (?, ?, ?, ?)
     ");
-    $stmt->execute([$name, $description, $price]);
+    $stmt->execute([$name, $description, $price, $imageName]);
 
     header("Location: services.php");
     exit;
@@ -49,7 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="text-slate-500 text-sm mt-1">Define a new financial product to be offered across your network.</p>
         </div>
 
-        <form method="POST" class="service-card">
+        <!-- ✅ enctype added (important) -->
+        <form method="POST" enctype="multipart/form-data" class="service-card">
             <div class="space-y-6">
                 <div>
                     <label class="field-label">Service Name</label>
@@ -67,6 +87,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">₹</span>
                         <input type="number" step="0.01" name="base_price" class="modern-input pl-8" placeholder="0.00" required>
                     </div>
+                </div>
+
+                <!-- ✅ NEW IMAGE FIELD -->
+                <div>
+                    <label class="field-label">Service Image (Optional)</label>
+                    <input type="file" name="service_image" accept="image/*" class="modern-input">
                 </div>
 
                 <div class="pt-8 border-t border-slate-100 flex items-center justify-between">

@@ -1,128 +1,213 @@
 <?php require 'partials/header.php'; ?>
 
 <style>
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    .stat-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
+    :root {
+        --accent: #2563eb;
+        --dark: #020617;
+    }
+
+    /* --- Advanced Animation Engine --- */
+    .reveal { 
+        opacity: 0; 
+        transform: translateY(50px) scale(0.95); 
+        transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); 
+    }
+    .reveal.active { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+
+    /* Floating Animation for Icons */
+    .float-ui { animation: floating 4s ease-in-out infinite; }
+    @keyframes floating {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+
+    /* The "Neural" Background Mesh */
+    .mesh-bg {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-image: 
+            radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.1) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.5s shadow;
+    }
+
+    .glass-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        background: white;
+        box-shadow: 0 40px 80px -20px rgba(2, 6, 23, 0.15);
+    }
 </style>
 
-<section class="py-20 text-center reveal">
-    <h1 class="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
-        Behind the <span class="text-blue-600">Platform</span>
-    </h1>
-    <div class="w-24 h-1.5 bg-blue-600 mx-auto mb-8 rounded-full"></div>
-    <p class="max-w-3xl mx-auto text-xl text-slate-600 leading-relaxed">
-        HERNEST is a multi-level distribution and commission management platform designed to bridge the gap between premium financial products and the people who need them.
-    </p>
-</section>
-
-<section class="mb-32 reveal">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm stat-card transition-all duration-300">
-            <div class="text-blue-600 mb-4">
-                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+<section class="relative pt-40 pb-32 overflow-hidden">
+    <div class="mesh-bg"></div>
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                    <span class="text-[10px] font-black tracking-widest text-blue-600 uppercase">Our DNA</span>
+                </div>
+                <h1 class="text-7xl md:text-9xl font-black text-slate-900 leading-[0.85] tracking-tightest mb-8">
+                    More than a <br><span class="text-blue-600">Platform.</span>
+                </h1>
+                <p class="text-xl text-slate-500 max-w-xl leading-relaxed font-medium mb-10">
+                    HERNEST is an institutional-grade infrastructure designed to turn 10,000+ partners into digital wealth moguls.
+                </p>
+                <div class="flex items-center gap-8">
+                    <div>
+                        <div class="text-3xl font-black text-slate-900">2026</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Roadmap Ready</div>
+                    </div>
+                    <div class="w-px h-10 bg-slate-200"></div>
+                    <div>
+                        <div class="text-3xl font-black text-slate-900">99.9%</div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Efficiency</div>
+                    </div>
+                </div>
             </div>
-            <h3 class="text-xl font-bold mb-2">Integrity First</h3>
-            <p class="text-slate-500 text-sm">Transparency in every commission, every loan, and every digital transaction.</p>
-        </div>
-        <div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm stat-card transition-all duration-300">
-            <div class="text-blue-600 mb-4">
-                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Hyper-Speed</h3>
-            <p class="text-slate-500 text-sm">Real-time distribution tracking and automated service fulfillment.</p>
-        </div>
-        <div class="p-8 bg-white border border-slate-100 rounded-3xl shadow-sm stat-card transition-all duration-300">
-            <div class="text-blue-600 mb-4">
-                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Network Growth</h3>
-            <p class="text-slate-500 text-sm">Built to scale. We empower distributors to build their own multi-level ecosystems.</p>
-        </div>
-    </div>
-</section>
-
-<section class="mb-32 reveal bg-slate-50 p-12 rounded-[3rem]">
-    <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold">The HERNEST Ecosystem</h2>
-    </div>
-    <div class="space-y-12">
-        <div class="flex flex-col md:flex-row gap-8 items-center">
-            <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-2xl shrink-0 shadow-lg">1</div>
-            <div>
-                <h4 class="text-xl font-bold mb-1 text-slate-900">Aggregated Sourcing</h4>
-                <p class="text-slate-600">We partner with top-tier banks, insurers, and digital providers to bring 15+ services under one roof.</p>
-            </div>
-        </div>
-        <div class="flex flex-col md:flex-row gap-8 items-center">
-            <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-2xl shrink-0 shadow-lg">2</div>
-            <div>
-                <h4 class="text-xl font-bold mb-1 text-slate-900">Multi-Level Distribution</h4>
-                <p class="text-slate-600">Our proprietary logic handles complex distribution hierarchies, ensuring everyone gets paid on time.</p>
-            </div>
-        </div>
-        <div class="flex flex-col md:flex-row gap-8 items-center">
-            <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-2xl shrink-0 shadow-lg">3</div>
-            <div>
-                <h4 class="text-xl font-bold mb-1 text-slate-900">Seamless Management</h4>
-                <p class="text-slate-600">User-friendly dashboards for tracking recharges, loan approvals, and marketing course sales.</p>
+            
+            <div class="lg:w-1/2 relative reveal" style="transition-delay: 0.3s;">
+                <div class="relative w-full h-[400px] bg-slate-100 rounded-[4rem] overflow-hidden border border-slate-200">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-emerald-500 opacity-10"></div>
+                    <div class="absolute top-10 left-10 glass-card p-6 rounded-3xl shadow-xl float-ui">
+                        <div class="w-10 h-10 bg-blue-600 rounded-xl mb-4"></div>
+                        <div class="h-2 w-20 bg-slate-200 rounded-full mb-2"></div>
+                        <div class="h-2 w-12 bg-slate-100 rounded-full"></div>
+                    </div>
+                    <div class="absolute bottom-10 right-10 glass-card p-6 rounded-3xl shadow-xl float-ui" style="animation-delay: -2s;">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-emerald-500 rounded-full"></div>
+                            <div class="h-2 w-16 bg-slate-200 rounded-full"></div>
+                        </div>
+                        <div class="text-xl font-black text-slate-900">₹1,42,000</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="mb-32 reveal px-6">
-    <div class="max-w-5xl mx-auto bg-slate-900 rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row items-center">
-        <div class="w-full md:w-1/3 h-64 bg-slate-800 flex items-center justify-center text-slate-500">
-           <svg class="w-20 h-20 opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        </div>
-        <div class="w-full md:w-2/3 p-12 text-white">
-            <h3 class="text-2xl font-bold mb-4">"Our goal is to democratize financial services through technology."</h3>
-            <p class="text-slate-400 italic mb-6">"At HERNEST, we don't just sell products; we create opportunities for entrepreneurs to thrive in the digital economy."</p>
-            <p class="font-bold text-blue-400">— The Leadership Team</p>
+
+
+
+<section class="py-32 bg-slate-950 rounded-[5rem] mx-4 overflow-hidden relative">
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-600/5 blur-[100px]"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <h2 class="text-4xl md:text-6xl font-black text-white mb-20 tracking-tighter text-center">How we <span class="text-blue-500">operate.</span></h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div class="reveal">
+                <div class="text-7xl font-black text-white/5 mb-[-2rem] ml-[-1rem]">01</div>
+                <h3 class="text-2xl font-black text-white mb-4">Sourcing</h3>
+                <p class="text-slate-400 leading-relaxed">We aggregate 15+ premium services from India's top banks and providers into a single high-speed API.</p>
+            </div>
+            <div class="reveal" style="transition-delay: 0.2s;">
+                <div class="text-7xl font-black text-white/5 mb-[-2rem] ml-[-1rem]">02</div>
+                <h3 class="text-2xl font-black text-white mb-4">Distribution</h3>
+                <p class="text-slate-400 leading-relaxed">Our multi-level logic ensures that commissions are calculated and distributed with 0% margin of error.</p>
+            </div>
+            <div class="reveal" style="transition-delay: 0.4s;">
+                <div class="text-7xl font-black text-white/5 mb-[-2rem] ml-[-1rem]">03</div>
+                <h3 class="text-2xl font-black text-white mb-4">Empowerment</h3>
+                <p class="text-slate-400 leading-relaxed">Partners get professional dashboards to track their growth and withdraw earnings instantly.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="mb-20 reveal grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-    <div>
-        <div class="text-4xl font-black text-slate-900 mb-1">2026</div>
-        <p class="text-xs uppercase tracking-widest text-slate-500 font-bold">Innovation Year</p>
-    </div>
-    <div>
-        <div class="text-4xl font-black text-slate-900 mb-1">15+</div>
-        <p class="text-xs uppercase tracking-widest text-slate-500 font-bold">Service Verticals</p>
-    </div>
-    <div>
-        <div class="text-4xl font-black text-slate-900 mb-1">99.9%</div>
-        <p class="text-xs uppercase tracking-widest text-slate-500 font-bold">System Uptime</p>
-    </div>
-    <div>
-        <div class="text-4xl font-black text-slate-900 mb-1">Secure</div>
-        <p class="text-xs uppercase tracking-widest text-slate-500 font-bold">Data Privacy</p>
+<section class="py-24 bg-white reveal">
+        <div class="max-w-7xl mx-auto px-6 bg-gradient-to-br from-blue-600 to-indigo-800 rounded-[3.5rem] p-12 md:p-24 text-white overflow-hidden relative">
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-16">
+                <div class="max-w-xl text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">Bank-Grade Security & Faster Payouts</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <p class="text-lg opacity-90"><span class="font-bold">Instant Commission:</span> Withdraw your earnings instantly into your bank account without delays.</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-lock"></i>
+                            </div>
+                            <p class="text-lg opacity-90"><span class="font-bold">Encrypted Portal:</span> Your documents and financial data are secured with 256-bit SSL encryption.</p>
+                        </div>
+                    </div>
+                    <div class="mt-12">
+                        <a href="#" class="px-12 py-5 bg-white text-blue-700 font-black rounded-2xl hover:scale-105 transition-all shadow-xl">
+                            Join Now
+                        </a>
+                    </div>
+                </div>
+                <div class="relative hidden lg:block">
+                    <div class="w-80 h-80 bg-white/10 rounded-full flex items-center justify-center p-12 outline outline-white/20 outline-offset-[30px] floating">
+                        <i class="fa-solid fa-user-check text-[10rem] text-white/50"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Decorative Elements -->
+            <div class="absolute -top-12 -right-12 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl"></div>
+        </div>
+    </section>
+
+<section class="py-40 bg-white">
+    <div class="max-w-5xl mx-auto px-6 text-center reveal">
+        <svg class="w-20 h-20 text-blue-100 mx-auto mb-10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V12C14.017 12.5523 13.5693 13 13.017 13H11.017C10.4647 13 10.017 12.5523 10.017 12V9C10.017 7.89543 10.9124 7 12.017 7H19.017C20.1216 7 21.017 7.89543 21.017 9V15C21.017 17.2091 19.2261 19 17.017 19H15.017C14.4647 19 14.017 19.4477 14.017 20V21H14.017ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V12C5.017 12.5523 4.56929 13 4.017 13H2.017C1.46472 13 1.017 12.5523 1.017 12V9C1.017 7.89543 1.91243 7 3.017 7H10.017C11.1216 7 12.017 7.89543 12.017 9V15C12.017 17.2091 10.2261 19 8.017 19H6.017C5.46472 19 5.017 19.4477 5.017 20V21H5.017Z"/></svg>
+        <h2 class="text-3xl md:text-5xl font-medium text-slate-900 leading-snug italic mb-10">
+            "Our mission is to democratize financial sovereignty by putting a bank in every partner's pocket."
+        </h2>
+        <div class="flex items-center justify-center gap-4">
+            <div class="w-12 h-px bg-slate-300"></div>
+            <p class="text-blue-600 font-black uppercase tracking-widest text-xs">The Leadership Team</p>
+            <div class="w-12 h-px bg-slate-300"></div>
+        </div>
     </div>
 </section>
 
-<section class="reveal py-16 border-t border-slate-100 text-center">
-    <h2 class="text-3xl font-bold mb-6 text-slate-900">Ready to see what we offer?</h2>
-    <a href="services.php" class="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all">
-        Browse Our Services
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-    </a>
+<section class="py-32 bg-blue-600 rounded-[5rem] mx-4 mb-20 relative overflow-hidden reveal">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-20">
+        <div>
+            <h2 class="text-5xl font-black text-white mb-8 tracking-tighter">Bank-Grade <br>Security.</h2>
+            <p class="text-blue-100 text-lg mb-12">Your data and commissions are protected by AES-256 encryption and PCI-DSS compliant infrastructure.</p>
+            <div class="grid grid-cols-2 gap-8">
+                <div class="p-6 bg-white/10 rounded-3xl border border-white/20">
+                    <div class="text-3xl font-black text-white">SSL</div>
+                    <div class="text-[10px] text-blue-200 uppercase font-bold tracking-widest">Encrypted</div>
+                </div>
+                <div class="p-6 bg-white/10 rounded-3xl border border-white/20">
+                    <div class="text-3xl font-black text-white">ISO</div>
+                    <div class="text-[10px] text-blue-200 uppercase font-bold tracking-widest">Certified</div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <div class="w-64 h-64 bg-white/5 rounded-full flex items-center justify-center border border-white/10 float-ui">
+                <svg class="w-32 h-32 text-white opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script>
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(section => {
-        observer.observe(section);
-    });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 <?php require 'partials/footer.php'; ?>
