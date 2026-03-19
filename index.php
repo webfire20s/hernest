@@ -88,6 +88,9 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a href="https://razorpay.me/@krantikumarjain" class="px-14 py-6 bg-emerald-600 text-white rounded-2xl font-bold shadow-2xl shadow-blue-600/20 hover:bg-blue-700 transition-all">
+                Pay Now
+            </a>
             <a href="register_partner.php" class="px-14 py-6 bg-blue-600 text-white rounded-2xl font-bold shadow-2xl shadow-blue-600/20 hover:bg-blue-700 transition-all">
                 Become a Partner
             </a>
