@@ -88,8 +88,8 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
-            <a href="https://razorpay.me/@krantikumarjain" class="px-14 py-6 bg-emerald-600 text-white rounded-2xl font-bold shadow-2xl shadow-blue-600/20 hover:bg-blue-700 transition-all">
-                Pay Now
+            <a href="contact.php" class="px-14 py-6 bg-white/5 text-white rounded-2xl font-bold shadow-2xl shadow-blue-600/20 hover:bg-blue-700 transition-all">
+               Enquire Now
             </a>
             <a href="register_partner.php" class="px-14 py-6 bg-blue-600 text-white rounded-2xl font-bold shadow-2xl shadow-blue-600/20 hover:bg-blue-700 transition-all">
                 Become a Partner
@@ -108,11 +108,12 @@
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
             </div>
             <div>
-                <p class="text-white font-black text-xl tracking-tighter">₹5Cr+</p>
-                <p class="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Disbursed This Year</p>
+                <!-- <p class="text-white font-black text-xl tracking-tighter">₹5Cr+</p> -->
+                <p class="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Trusted by 500+ Clients | 150+ Women Empowered | 100+ Business Partners
+Building a Strong Digital Network Across India</p>
             </div>
         </div>
-        </div>
+        </div>  
 </section>
 
 <section class="py-32 bg-white px-6 relative overflow-hidden">
@@ -311,7 +312,7 @@
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
     }
-    setInterval(nextSlide, 2000); // Change slide every 5 seconds
+    setInterval(nextSlide, 2000); // Change slide every 2 seconds
 
     // --- Calculator Logic ---
     function updateCalc() {
@@ -322,7 +323,7 @@
         document.getElementById('insValue').innerText = ins;
         
         // Mock math: Loan comm = 4000, Ins comm = 500
-        const total = (loans * 4000) + (ins * 500);
+        const total = (loans * 4000) + (ins * 1000);
         document.getElementById('totalProfit').innerText = total.toLocaleString('en-IN');
     }
 

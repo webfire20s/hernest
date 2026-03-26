@@ -15,7 +15,7 @@ function sendMail($to, $subject, $message)
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'digifinmatrix@gmail.com';
+        $mail->Username   = 'info@hernestworld.com';
         $mail->Password   = 'afxwynklckynvvzf';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
@@ -25,7 +25,7 @@ function sendMail($to, $subject, $message)
         //$mail->SMTPDebug = 2;
         //$mail->Debugoutput = 'html';
 
-        $mail->setFrom('digifinmatrix@gmail.com', 'HERNEST');
+        $mail->setFrom('info@hernestworld.com', 'HERNEST');
         $mail->addAddress($to);
 
         $mail->isHTML(true);

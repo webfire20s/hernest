@@ -3,15 +3,41 @@ require 'includes/db.php';
 require 'partials/header.php';
 
 $message_sent = false; 
+
+// Fetch services for dropdown
+$services = $pdo->query("SELECT id, service_name FROM services WHERE is_active = 1")->fetchAll();
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $stmt = $pdo->prepare("INSERT INTO contact_messages (name,email,message) VALUES (?,?,?)");
+
+    $name = $_POST['name'];
+    $email = !empty($_POST['email']) ? $_POST['email'] : null;
+    $phone = $_POST['phone'];
+    $city = $_POST['city'] ?? null;
+    $state = $_POST['state'] ?? null;
+    $country = $_POST['country'] ?? 'India';
+    $service_id = $_POST['service_id'] ?? null;
+    $message = $_POST['message'];
+
+    $stmt = $pdo->prepare("
+        INSERT INTO contact_messages 
+        (name, email, message, phone, city, state, country, service_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ");
+
     $stmt->execute([
-        $_POST['name'],
-        $_POST['email'],
-        $_POST['message']
+        $name,
+        $email,
+        $message,
+        $phone,
+        $city,
+        $state,
+        $country,
+        $service_id
     ]);
+
     $message_sent = true;
 }
+
 ?>
 
 <style>
@@ -129,7 +155,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <div class="space-y-10">
                         <div class="group cursor-pointer">
                             <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mb-2 group-hover:text-blue-400 transition-colors">Direct Terminal</p>
-                            <p class="text-xl font-bold">digifinmatrix@gmail.com</p>
+                            <p class="text-xl font-bold">info@hernestworld.com</p>
                         </div>
 
                         <div class="group cursor-pointer">
@@ -144,36 +170,80 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     </div>
                 </div>
 
-                <div class="p-10 bg-blue-600 rounded-[3rem] text-white shadow-xl shadow-blue-200/50 reveal" style="transition-delay: 0.2s;">
+                <!-- <div class="p-10 bg-blue-600 rounded-[3rem] text-white shadow-xl shadow-blue-200/50 reveal" style="transition-delay: 0.2s;">
                     <h4 class="text-xl font-black mb-4 italic">Institutional Support</h4>
                     <p class="text-blue-100 text-sm leading-relaxed font-medium opacity-90">Our distribution partners receive priority support. Login to your dashboard for live chat options.</p>
-                </div>
+                </div> -->
             </div>
 
             <div class="lg:col-span-8 bg-slate-50 p-8 md:p-16 rounded-[4rem] border border-slate-100 reveal" style="transition-delay: 0.3s;">
                 <form method="POST" class="space-y-8">
+
+                    <!-- BASIC INFO -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Identity</label>
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Full Name</label>
                             <input type="text" name="name" class="form-input" placeholder="Your Name" required>
                         </div>
+
                         <div>
-                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Digital Address</label>
-                            <input type="email" name="email" class="form-input" placeholder="Your Email" required>
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Phone Number</label>
+                            <input type="text" name="phone" class="form-input" placeholder="Your Phone Number" required>
                         </div>
                     </div>
-                    
+
                     <div>
-                        <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">How can we help?</label>
-                        <textarea name="message" rows="6" class="form-input" placeholder="How can we help you with our services?" required></textarea>
+                        <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Email Address (Optional)</label>
+                        <input type="email" name="email" class="form-input" placeholder="Your Email">
                     </div>
 
+                    <!-- LOCATION -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div>
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">City</label>
+                            <input type="text" name="city" class="form-input" placeholder="City">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">State</label>
+                            <input type="text" name="state" class="form-input" placeholder="State">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Country</label>
+                            <input type="text" name="country" value="India" class="form-input">
+                        </div>
+                    </div>
+
+                    <!-- SERVICE DROPDOWN -->
+                    <div>
+                        <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">What are you looking for?</label>
+                        <select name="service_id" class="form-input">
+                            <option value="">Select a Service</option>
+                            <?php foreach($services as $service): ?>
+                                <option value="<?= $service['id'] ?>">
+                                    <?= htmlspecialchars($service['service_name']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <!-- MESSAGE -->
+                    <div>
+                        <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">How can we help?</label>
+                        <textarea name="message" rows="6" class="form-input" placeholder="Describe your requirement..." required></textarea>
+                    </div>
+
+                    <!-- SUBMIT -->
                     <button type="submit" class="group relative w-full py-5 bg-slate-900 text-white font-black rounded-2xl overflow-hidden transition-all hover:bg-blue-600 hover:shadow-2xl hover:shadow-blue-300">
                         <span class="relative z-10 flex items-center justify-center gap-3">
-                            Initiate Inquiry
-                            <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            Submit Request
+                            <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
                         </span>
                     </button>
+
                 </form>
             </div>
 

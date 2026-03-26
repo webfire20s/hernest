@@ -73,6 +73,7 @@ require 'sidebar.php';
                     <th>ID</th>
                     <th>Customer Name</th>
                     <th>Contact & Address</th>
+                    <th>Lead Value</th>
                     <th>Submitted By</th>
                     <th>Service Type</th>
                     <th>Status</th>
@@ -97,6 +98,16 @@ require 'sidebar.php';
                     <td>
                         <div class="text-slate-900 font-medium"><?= htmlspecialchars($lead['customer_phone']) ?></div>
                         <div class="text-[11px] text-slate-400 truncate max-w-[200px]"><?= htmlspecialchars($lead['address']) ?></div>
+                    </td>
+
+                    <td>
+                        <?php if(!empty($lead['deal_amount'])): ?>
+                            <span class="font-bold text-slate-800">
+                                ₹<?= number_format($lead['deal_amount'], 2) ?>
+                            </span>
+                        <?php else: ?>
+                            <span class="text-xs text-slate-400 italic">Base Price</span>
+                        <?php endif; ?>
                     </td>
 
                     <td>

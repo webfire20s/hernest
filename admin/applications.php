@@ -91,7 +91,7 @@ require '../includes/sidebar.php';
                             <?php endif; ?>
                         </td>
                         <td>
-                            <span class="px-2 py-1 bg-indigo-50 text-indigo-500 rounded text-[9px] font-black uppercase tracking-wider border border-indigo-100">
+                            <span class="px-2 py-5 bg-indigo-40 text-indigo-500 rounded text-[9px] font-black uppercase tracking-wider border border-indigo-10">
                                 <?= htmlspecialchars($app['role_name']) ?>
                             </span>
                         </td>

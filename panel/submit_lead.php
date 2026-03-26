@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $customerPhone = trim($_POST['customer_phone']);
     $customerEmail = trim($_POST['customer_email']);
     $address = trim($_POST['address']);
+    $dealAmount = $_POST['deal_amount'];
 
     $insert = $pdo->prepare("
         INSERT INTO leads (
@@ -30,11 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             customer_phone,
             customer_email,
             address,
+            deal_amount,
             submitted_by,
             current_status,
             commission_distributed
         )
-        VALUES (?, ?, ?, ?, ?, ?, 'Pending', 0)
+        VALUES (?, ?, ?, ?, ?, ?, ?, 'Pending', 0)
     ");
 
     $insert->execute([
@@ -43,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $customerPhone,
         $customerEmail,
         $address,
+        $dealAmount,
         $currentUser['id']
     ]);
 
@@ -73,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><strong>Customer Phone:</strong> " . htmlspecialchars($_POST['customer_phone']) . "</p>
             <p><strong>Customer Email:</strong> " . htmlspecialchars($_POST['customer_email']) . "</p>
             <p><strong>Address:</strong> " . htmlspecialchars($_POST['address']) . "</p>
+            <p><strong>Deal Amount:</strong> " . htmlspecialchars($_POST['deal_amount']) . "</p>
             <p><strong>Submitted By:</strong> " . htmlspecialchars($currentUser['full_name']) . "</p>
             <p><strong>Submitted At:</strong> " . date('Y-m-d H:i:s') . "</p>
         ";
@@ -148,6 +152,10 @@ require 'sidebar.php';
                         Projected Commission: ₹ <span id="commissionAmount">0.00</span>
                     </div>
                 </div>
+                <div class="input-group">
+                    <label class="label">Deal Amount (₹)</label>
+                    <input type="number" step="0.01" name="deal_amount" class="form-input" placeholder="Enter final deal value" required>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="input-group">
@@ -196,19 +204,21 @@ require 'sidebar.php';
 document.addEventListener('DOMContentLoaded', function () {
 
     const serviceSelect = document.getElementById('service_id');
+    const dealInput     = document.querySelector('input[name="deal_amount"]');
     const previewBox    = document.getElementById('commissionPreview');
     const amountSpan    = document.getElementById('commissionAmount');
 
-    serviceSelect.addEventListener('change', function () {
+    function updateCommissionPreview() {
 
-        const serviceId = this.value;
+        const serviceId  = serviceSelect.value;
+        const dealAmount = dealInput ? dealInput.value : 0;
 
         if (!serviceId) {
             previewBox.classList.add('hidden');
             return;
         }
 
-        fetch('get_projected_commission.php?service_id=' + serviceId)
+        fetch(`get_projected_commission.php?service_id=${serviceId}&deal_amount=${dealAmount}`)
             .then(response => response.json())
             .then(data => {
 
@@ -219,9 +229,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     previewBox.classList.add('hidden');
                 }
 
+            })
+            .catch(() => {
+                previewBox.classList.add('hidden');
             });
+    }
 
-    });
+    // Trigger on service change
+    serviceSelect.addEventListener('change', updateCommissionPreview);
+
+    // Trigger on typing deal amount (REAL-TIME)
+    if (dealInput) {
+        dealInput.addEventListener('input', updateCommissionPreview);
+    }
 
 });
-</script>   
+</script> 

@@ -32,12 +32,18 @@ if ($rule['commission_type'] === 'fixed') {
 
 } elseif ($rule['commission_type'] === 'percentage') {
 
-    // Fetch service base price
+    // Get deal amount from request (if provided)
+    $dealAmount = isset($_GET['deal_amount']) ? (float)$_GET['deal_amount'] : 0;
+
+    // Fetch base price (fallback)
     $stmt2 = $pdo->prepare("SELECT base_price FROM services WHERE id = ?");
     $stmt2->execute([$serviceId]);
     $basePrice = (float)$stmt2->fetchColumn();
 
-    $commissionAmount = ($basePrice * $rule['commission_value']) / 100;
+    // Smart fallback logic
+    $base = $dealAmount > 0 ? $dealAmount : $basePrice;
+
+    $commissionAmount = ($base * $rule['commission_value']) / 100;
 }
 
 echo json_encode([

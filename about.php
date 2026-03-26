@@ -62,7 +62,7 @@
                     More than a <br><span class="text-blue-600">Platform.</span>
                 </h1>
                 <p class="text-xl text-slate-500 max-w-xl leading-relaxed font-medium mb-10">
-                    HERNEST is an institutional-grade infrastructure designed to turn 10,000+ partners into digital wealth moguls.
+                    HERNEST is an institutional-grade infrastructure designed to turn 10,000+ partners into digital wealth masters.
                 </p>
                 <div class="flex items-center gap-8">
                     <div>
@@ -80,17 +80,27 @@
             <div class="lg:w-1/2 relative reveal" style="transition-delay: 0.3s;">
                 <div class="relative w-full h-[400px] bg-slate-100 rounded-[4rem] overflow-hidden border border-slate-200">
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-emerald-500 opacity-10"></div>
+                    
                     <div class="absolute top-10 left-10 glass-card p-6 rounded-3xl shadow-xl float-ui">
-                        <div class="w-10 h-10 bg-blue-600 rounded-xl mb-4"></div>
+                        <div class="w-10 h-10 bg-blue-600 rounded-xl mb-4 animate-pulse"></div>
                         <div class="h-2 w-20 bg-slate-200 rounded-full mb-2"></div>
                         <div class="h-2 w-12 bg-slate-100 rounded-full"></div>
                     </div>
+
                     <div class="absolute bottom-10 right-10 glass-card p-6 rounded-3xl shadow-xl float-ui" style="animation-delay: -2s;">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-8 h-8 bg-emerald-500 rounded-full"></div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+                                <div class="w-3 h-3 bg-white rounded-sm rotate-45"></div>
+                            </div>
                             <div class="h-2 w-16 bg-slate-200 rounded-full"></div>
                         </div>
-                        <div class="text-xl font-black text-slate-900">₹1,42,000</div>
+                        
+                        <div class="flex items-end gap-2 h-12">
+                            <div class="w-3 bg-emerald-200 rounded-t-sm animate-bounce" style="height: 40%; animation-duration: 2s;"></div>
+                            <div class="w-3 bg-emerald-300 rounded-t-sm animate-bounce" style="height: 70%; animation-duration: 2.5s;"></div>
+                            <div class="w-3 bg-emerald-500 rounded-t-sm animate-bounce" style="height: 100%; animation-duration: 1.8s;"></div>
+                            <div class="w-3 bg-emerald-400 rounded-t-sm animate-bounce" style="height: 60%; animation-duration: 2.2s;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,6 +183,52 @@
             <div class="w-12 h-px bg-slate-300"></div>
             <p class="text-blue-600 font-black uppercase tracking-widest text-xs">The Leadership Team</p>
             <div class="w-12 h-px bg-slate-300"></div>
+        </div>
+    </div>
+</section>
+<section class="py-24 bg-white reveal">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-center gap-16 bg-slate-50 rounded-[4rem] p-8 md:p-16 border border-slate-100 shadow-sm">
+            
+            <div class="lg:w-1/2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span class="text-[10px] font-black tracking-widest text-emerald-600 uppercase">Verified Excellence</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+                    Authorized & <br><span class="text-blue-600">Certified.</span>
+                </h2>
+                <p class="text-lg text-slate-500 leading-relaxed mb-8">
+                    HERNEST operates under strict compliance standards. Our certification reflects our commitment to security, transparency, and the financial success of our 10,000+ partners.
+                </p>
+                <div class="flex gap-4">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-bold text-slate-400 uppercase tracking-tighter">Issued By</span>
+                        <span class="text-lg font-black text-slate-900">Department of Promotion of Industry & Internal Trade</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 relative group">
+                <div class="absolute inset-0 bg-blue-600/10 blur-[60px] rounded-full scale-75 group-hover:scale-110 transition-transform duration-700"></div>
+                
+                <div class="relative glass-card p-4 rounded-[2rem] shadow-2xl border border-white rotate-2 group-hover:rotate-0 transition-all duration-500">
+                    <img src="assets/certificate.jpg" 
+                         alt="Official Certification" 
+                         class="w-full h-auto rounded-2xl shadow-inner grayscale-[0.2] group-hover:grayscale-0 transition-all">
+                    
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 float-ui">
+                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white">
+                            <i class="fa-solid fa-ribbon text-xl"></i>
+                        </div>
+                        <!-- <div>
+                            <p class="text-[10px] font-black text-slate-400 uppercase leading-none">Status</p>
+                            <p class="text-sm font-bold text-slate-900">Valid 2026</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>

@@ -7,6 +7,7 @@ require '../includes/sidebar.php';
 // Fetch all leads (Logic Preserved)
 $stmt = $pdo->query("
     SELECT l.id, l.customer_name, l.customer_phone,
+           l.address,l.deal_amount,
            l.current_status, l.created_at,
            s.service_name,
            u.full_name AS submitted_by
@@ -68,6 +69,7 @@ $leads = $stmt->fetchAll();
                     <th>ID</th>
                     <th>Customer Details</th>
                     <th>Service</th>
+                    <th>Lead Value</th>
                     <th>Submitted By</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -86,9 +88,23 @@ $leads = $stmt->fetchAll();
                         <td>
                             <div class="font-bold text-slate-800"><?= htmlspecialchars($lead['customer_name']) ?></div>
                             <div class="text-[11px] text-slate-400 font-medium"><?= htmlspecialchars($lead['customer_phone']) ?></div>
+                            <?php if(!empty($lead['address'])): ?>
+                                <div class="text-[11px] text-slate-500 mt-1 leading-tight">
+                                    <?= htmlspecialchars($lead['address']) ?>
+                                </div>
+                            <?php endif; ?>
                         </td>
                         <td>
                             <span class="font-semibold text-slate-600"><?= $lead['service_name'] ?></span>
+                        </td>
+                        <td>
+                            <?php if(!empty($lead['deal_amount'])): ?>
+                                <span class="font-bold text-slate-800">
+                                    ₹<?= number_format($lead['deal_amount'], 2) ?>
+                                </span>
+                            <?php else: ?>
+                                <span class="text-xs text-slate-400 italic">Base Price</span>
+                            <?php endif; ?>
                         </td>
                         <td>
                             <div class="flex items-center gap-2">

@@ -102,6 +102,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <h3>Admin Panel</h3>
     <ul>
         <li><a href="dashboard.php" class="<?= $current_page == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a></li>
+        <li><a href="contact_messages.php" class="<?= $current_page == 'contact_messages.php' ? 'active' : '' ?>">Contact Requests</a></li>
         <li><a href="users.php" class="<?= $current_page == 'users.php' ? 'active' : '' ?>">Users</a></li>
         <li><a href="applications.php" class="<?= $current_page == 'applications.php' ? 'active' : '' ?>">Applications</a></li>
         <li><a href="leads.php" class="<?= $current_page == 'leads.php' ? 'active' : '' ?>">Leads</a></li>

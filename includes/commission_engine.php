@@ -56,16 +56,25 @@ function distributeCommission($lead_id, $pdo)
 
         if ($rule) {
 
+           // Get base price + lead deal amount
             $stmt = $pdo->prepare("
-                SELECT base_price FROM services WHERE id = ?
+                SELECT s.base_price, l.deal_amount
+                FROM services s
+                JOIN leads l ON l.service_id = s.id
+                WHERE l.id = ?
             ");
-            $stmt->execute([$service_id]);
-            $service = $stmt->fetch();
+            $stmt->execute([$lead_id]);
+            $data = $stmt->fetch();
+
+            // Fallback logic (VERY IMPORTANT)
+            $baseAmount = !empty($data['deal_amount']) 
+                ? $data['deal_amount'] 
+                : $data['base_price'];
 
             if ($rule['commission_type'] == 'fixed') {
                 $amount = $rule['commission_value'];
             } else {
-                $amount = ($service['base_price'] * $rule['commission_value']) / 100;
+                $amount = ($baseAmount * $rule['commission_value']) / 100;
             }
 
             // Insert commission record

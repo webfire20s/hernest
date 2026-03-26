@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $role = $_POST['role_id'];
+    $address = $_POST['address'];
+    $pincode = $_POST['pincode'];
 
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -29,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $insert = $pdo->prepare("
             INSERT INTO partner_applications
-            (full_name,email,phone,password_hash,requested_role_id)
-            VALUES (?,?,?,?,?)
+            (full_name,email,phone,password_hash,requested_role_id,address,pincode)
+            VALUES (?,?,?,?,?,?,?)
         ");
 
         $insert->execute([
@@ -38,7 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email,
             $phone,
             $password,
-            $role
+            $role,
+            $address,
+            $pincode
         ]);
 
         $message = "Application submitted. Waiting for admin approval.";
