@@ -13,10 +13,10 @@ function sendMail($to, $subject, $message)
 
     try {
         $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
+        $mail->Host       = 'mail.hernestwold.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'info@hernestworld.com';
-        $mail->Password   = 'afxwynklckynvvzf';
+        $mail->Password   = 'viF4icH2W^EKWNC4';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet = 'UTF-8';
