@@ -115,33 +115,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 </style>
 
-<section class="relative py-32 overflow-hidden bg-white">
-    <div class="blob top-0 -left-20"></div>
-    <div class="blob bottom-0 -right-20"></div>
+<section class="relative py-16 md:py-32 overflow-hidden bg-white">
+    <div class="blob top-0 -left-10 md:-left-20 w-40 h-40 md:w-80 md:h-80"></div>
+    <div class="blob bottom-0 -right-10 md:-right-20 w-40 h-40 md:w-80 md:h-80"></div>
 
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
         
-        <div class="text-center mb-24 reveal">
+        <div class="text-center mb-12 md:mb-24 reveal">
             <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
                 <div class="status-pulse"></div>
-                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600">Response Time: < 2 Hours</span>
+                <span class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-blue-600">Response Time: &lt; 2 Hours</span>
             </div>
-            <h1 class="text-7xl md:text-9xl font-black text-slate-900 tracking-tightest leading-[0.85] mb-8">
+            <h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-slate-900 tracking-tightest leading-[1.1] md:leading-[0.85] mb-6 md:mb-8">
                 Connect. <br><span class="text-blue-600">Collaborate.</span>
             </h1>
-            <p class="text-slate-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+            <p class="text-slate-500 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed px-2">
                 Have questions about our 15+ services? Our team is here to help you scale your digital infrastructure.
             </p>
         </div>
 
         <?php if($message_sent): ?>
-            <div class="max-w-4xl mx-auto mb-16 p-8 bg-emerald-50 border border-emerald-100 rounded-[2.5rem] text-emerald-800 flex items-center gap-6 animate-in slide-in-from-top duration-700">
-                <div class="w-14 h-14 bg-emerald-500 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-emerald-200">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 13l4 4L19 7"></path></svg>
+            <div class="max-w-4xl mx-auto mb-12 md:mb-16 p-6 md:p-8 bg-emerald-50 border border-emerald-100 rounded-[2rem] md:rounded-[2.5rem] text-emerald-800 flex flex-col sm:flex-row items-center gap-4 md:gap-6 animate-in slide-in-from-top duration-700 text-center sm:text-left">
+                <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-500 text-white rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-emerald-200">
+                    <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <div>
-                    <p class="text-2xl font-black tracking-tight">Transmission Received.</p>
-                    <p class="font-medium opacity-80">Message sent successfully. We'll get back to you soon!</p>
+                    <p class="text-xl md:text-2xl font-black tracking-tight">Transmission Received.</p>
+                    <p class="text-sm md:text-base font-medium opacity-80">Message sent successfully. We'll get back to you soon!</p>
                 </div>
             </div>
         <?php endif; ?>
@@ -149,76 +149,68 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             <div class="lg:col-span-4 flex flex-col gap-6 reveal">
-                <div class="info-card p-10 rounded-[3rem] text-white shadow-2xl flex-grow">
-                    <h3 class="text-3xl font-black mb-10 tracking-tight">Global Reach. <br><span class="text-blue-500">Local Support.</span></h3>
+                <div class="info-card p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] text-white shadow-2xl flex-grow bg-slate-900">
+                    <h3 class="text-2xl md:text-3xl font-black mb-8 md:mb-10 tracking-tight">Global Reach. <br><span class="text-blue-500">Local Support.</span></h3>
                     
-                    <div class="space-y-10">
+                    <div class="space-y-8 md:space-y-10">
                         <div class="group cursor-pointer">
-                            <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mb-2 group-hover:text-blue-400 transition-colors">Direct Terminal</p>
-                            <p class="text-xl font-bold">info@hernestworld.com</p>
+                            <p class="text-slate-500 text-[9px] md:text-[10px] uppercase font-black tracking-widest mb-1 md:mb-2 group-hover:text-blue-400 transition-colors">Direct Terminal</p>
+                            <p class="text-lg md:text-xl font-bold break-words">info@hernestworld.com</p>
                         </div>
 
                         <div class="group cursor-pointer">
-                            <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mb-2 group-hover:text-blue-400 transition-colors">Hotline</p>
-                            <p class="text-xl font-bold">+91 9829008838</p>
+                            <p class="text-slate-500 text-[9px] md:text-[10px] uppercase font-black tracking-widest mb-1 md:mb-2 group-hover:text-blue-400 transition-colors">Hotline</p>
+                            <p class="text-lg md:text-xl font-bold">+91 9829008838</p>
                         </div>
 
                         <div class="group cursor-pointer">
-                            <p class="text-slate-500 text-[10px] uppercase font-black tracking-widest mb-2 group-hover:text-blue-400 transition-colors">Headquarters</p>
-                            <p class="text-lg font-medium leading-relaxed">4 k 3 Pratap Nagar <br>Jodhpur - 342003</p>
+                            <p class="text-slate-500 text-[9px] md:text-[10px] uppercase font-black tracking-widest mb-1 md:mb-2 group-hover:text-blue-400 transition-colors">Headquarters</p>
+                            <p class="text-base md:text-lg font-medium leading-relaxed">4 k 3 Pratap Nagar <br>Jodhpur - 342003</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="p-10 bg-blue-600 rounded-[3rem] text-white shadow-xl shadow-blue-200/50 reveal" style="transition-delay: 0.2s;">
-                    <h4 class="text-xl font-black mb-4 italic">Institutional Support</h4>
-                    <p class="text-blue-100 text-sm leading-relaxed font-medium opacity-90">Our distribution partners receive priority support. Login to your dashboard for live chat options.</p>
-                </div> -->
             </div>
 
-            <div class="lg:col-span-8 bg-slate-50 p-8 md:p-16 rounded-[4rem] border border-slate-100 reveal" style="transition-delay: 0.3s;">
-                <form method="POST" class="space-y-8">
+            <div class="lg:col-span-8 bg-slate-50 p-6 sm:p-10 md:p-16 rounded-[2.5rem] md:rounded-[4rem] border border-slate-100 reveal" style="transition-delay: 0.3s;">
+                <form method="POST" class="space-y-6 md:space-y-8">
 
-                    <!-- BASIC INFO -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         <div>
-                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Full Name</label>
-                            <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+                            <label class="block text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3 ml-2">Full Name</label>
+                            <input type="text" name="name" class="form-input w-full p-4 rounded-xl border-slate-200" placeholder="Your Name" required>
                         </div>
 
                         <div>
-                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Phone Number</label>
-                            <input type="text" name="phone" class="form-input" placeholder="Your Phone Number" required>
+                            <label class="block text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3 ml-2">Phone Number</label>
+                            <input type="text" name="phone" class="form-input w-full p-4 rounded-xl border-slate-200" placeholder="Your Phone Number" required>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Email Address (Optional)</label>
-                        <input type="email" name="email" class="form-input" placeholder="Your Email">
+                        <label class="block text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3 ml-2">Email Address (Optional)</label>
+                        <input type="email" name="email" class="form-input w-full p-4 rounded-xl border-slate-200" placeholder="Your Email">
                     </div>
 
-                    <!-- LOCATION -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
                         <div>
-                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">City</label>
-                            <input type="text" name="city" class="form-input" placeholder="City">
+                            <label class="block text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3 ml-2">City</label>
+                            <input type="text" name="city" class="form-input w-full p-4 rounded-xl border-slate-200" placeholder="City">
                         </div>
 
                         <div>
-                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">State</label>
-                            <input type="text" name="state" class="form-input" placeholder="State">
+                            <label class="block text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3 ml-2">State</label>
+                            <input type="text" name="state" class="form-input w-full p-4 rounded-xl border-slate-200" placeholder="State">
                         </div>
 
-                        <div>
-                            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">Country</label>
-                            <input type="text" name="country" value="India" class="form-input">
+                        <div class="sm:col-span-2 md:col-span-1">
+                            <label class="block text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3 ml-2">Country</label>
+                            <input type="text" name="country" value="India" class="form-input w-full p-4 rounded-xl border-slate-200">
                         </div>
                     </div>
 
-                    <!-- SERVICE DROPDOWN -->
                     <div>
-                        <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">What are you looking for?</label>
-                        <select name="service_id" class="form-input">
+                        <label class="block text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3 ml-2">What are you looking for?</label>
+                        <select name="service_id" class="form-input w-full p-4 rounded-xl border-slate-200 bg-white">
                             <option value="">Select a Service</option>
                             <?php foreach($services as $service): ?>
                                 <option value="<?= $service['id'] ?>">
@@ -228,13 +220,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         </select>
                     </div>
 
-                    <!-- MESSAGE -->
                     <div>
-                        <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest mb-3 ml-2">How can we help?</label>
-                        <textarea name="message" rows="6" class="form-input" placeholder="Describe your requirement..." required></textarea>
+                        <label class="block text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3 ml-2">How can we help?</label>
+                        <textarea name="message" rows="5" class="form-input w-full p-4 rounded-xl border-slate-200" placeholder="Describe your requirement..." required></textarea>
                     </div>
 
-                    <!-- SUBMIT -->
                     <button type="submit" class="group relative w-full py-5 bg-slate-900 text-white font-black rounded-2xl overflow-hidden transition-all hover:bg-blue-600 hover:shadow-2xl hover:shadow-blue-300">
                         <span class="relative z-10 flex items-center justify-center gap-3">
                             Submit Request
@@ -250,7 +240,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         </div>
     </div>
 </section>
-
 <script>
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

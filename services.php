@@ -105,28 +105,37 @@ $services = $stmt->fetchAll();
     }
 </style>
 
-<section class="relative pt-40 pb-24 overflow-hidden bg-white">
-    <div class="bg-text">ASSETS</div>
-    <div class="max-w-7xl mx-auto px-6 text-center reveal">
-        <div class="inline-block px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-8">
-            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600">Digital Infrastructure</span>
+<section class="relative pt-24 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-white">
+    <div class="bg-text hidden md:block">ASSETS</div>
+    
+    <div class="max-w-7xl mx-auto px-4 md:px-6 text-center reveal">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-6 md:mb-8">
+            <span class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-blue-600">Digital Infrastructure</span>
         </div>
-        <h1 class="text-7xl md:text-9xl font-black text-slate-900 tracking-tightest leading-[0.85] mb-12">
+        
+        <h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-slate-900 tracking-tightest leading-[1.1] md:leading-[0.85] mb-8 md:mb-12">
             The Service <br><span class="text-blue-600">Stack.</span>
         </h1>
         
-        <div class="flex flex-wrap justify-center gap-3 mt-14 max-w-6xl mx-auto">
-            <button onclick="filterServices('all', this)" class="filter-btn active px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">All</button>
-            <button onclick="filterServices('financial', this)" class="filter-btn px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Financial</button>
-            <button onclick="filterServices('insurance', this)" class="filter-btn px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Insurance</button>
-            <button onclick="filterServices('investment', this)" class="filter-btn px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Investment</button>
-            <button onclick="filterServices('payments', this)" class="filter-btn px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Payments</button>
-            <button onclick="filterServices('travel', this)" class="filter-btn px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Travel</button>
-            <button onclick="filterServices('selling', this)" class="filter-btn px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Selling</button>
-            <button onclick="filterServices('tech', this)" class="filter-btn px-8 py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest">Tech</button>
+        <div class="mt-10 md:mt-14 max-w-6xl mx-auto">
+            <div class="flex flex-nowrap md:flex-wrap overflow-x-auto md:justify-center gap-2 md:gap-3 pb-4 md:pb-0 no-scrollbar">
+                <button onclick="filterServices('all', this)" class="filter-btn active whitespace-nowrap px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shrink-0">All</button>
+                <button onclick="filterServices('financial', this)" class="filter-btn whitespace-nowrap px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shrink-0">Financial</button>
+                <button onclick="filterServices('insurance', this)" class="filter-btn whitespace-nowrap px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shrink-0">Insurance</button>
+                <button onclick="filterServices('investment', this)" class="filter-btn whitespace-nowrap px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shrink-0">Investment</button>
+                <button onclick="filterServices('payments', this)" class="filter-btn whitespace-nowrap px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shrink-0">Payments</button>
+                <button onclick="filterServices('travel', this)" class="filter-btn whitespace-nowrap px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shrink-0">Travel</button>
+                <button onclick="filterServices('selling', this)" class="filter-btn whitespace-nowrap px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shrink-0">Selling</button>
+                <button onclick="filterServices('tech', this)" class="filter-btn whitespace-nowrap px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[9px] md:text-[10px] uppercase tracking-widest shrink-0">Tech</button>
+            </div>
         </div>
     </div>
 </section>
+
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
 
 <section class="pb-40 px-6 max-w-[1500px] mx-auto">
     <?php if($services): ?>

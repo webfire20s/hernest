@@ -74,87 +74,87 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .glass-card { background: white; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 md:p-5">
+<body class="min-h-screen flex items-center justify-center p-4 md:p-6 bg-slate-50 relative">
     
     <div class="fixed top-0 left-0 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-40 -z-10"></div>
 
     <div class="w-full max-w-md animate-in fade-in zoom-in duration-500">
-        <div class="text-center mb-5">
+        <div class="text-center mb-6">
             <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">
-                Partner <span class="gradient-text">Registration</span>
+                Partner <span class="text-blue-600">Registration</span>
             </h1>
             <p class="text-slate-500 text-sm mt-1">Join the HERNEST distribution network</p>
         </div>
 
-        <div class="glass-card p-6 md:p-8 rounded-[2rem]">
+        <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-xl shadow-slate-200/60 border border-slate-100">
             
             <?php if($message): ?>
-                <div class="mb-5 p-4 rounded-xl text-xs font-bold border flex items-center gap-3 <?= $isError ? 'bg-red-50 text-red-600 border-red-100' : 'bg-emerald-50 text-emerald-600 border-emerald-100' ?>">
+                <div class="mb-6 p-4 rounded-xl text-xs font-bold border flex items-center gap-3 <?= $isError ? 'bg-red-50 text-red-600 border-red-100' : 'bg-emerald-50 text-emerald-600 border-emerald-100' ?>">
                     <span class="w-2 h-2 rounded-full animate-pulse <?= $isError ? 'bg-red-500' : 'bg-emerald-500' ?>"></span>
                     <?= $message ?>
                 </div>
             <?php endif; ?>
 
-            <form method="POST" class="space-y-0">
+            <form method="POST" class="space-y-4">
                 
-                <div class="space-y-0">
+                <div class="space-y-1">
                     <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Full Name</label>
-                    <input type="text" name="full_name" placeholder="Enter your name" class="form-input" required>
+                    <input type="text" name="full_name" placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-sm" required>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="space-y-0">
+                    <div class="space-y-1">
                         <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Email</label>
-                        <input type="email" name="email" placeholder="Enter Your Email" class="form-input" required>
+                        <input type="email" name="email" placeholder="Email address" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-sm" required>
                     </div>
-                    <div class="space-y-0">
+                    <div class="space-y-1">
                         <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Phone</label>
-                        <input type="text" name="phone" placeholder="Contact number" class="form-input">
+                        <input type="text" name="phone" placeholder="Mobile number" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-sm" required>
                     </div>
                 </div>
-                <!-- NEW ADDRESS FIELD -->
-                <div class="space-y-0">
+
+                <div class="space-y-1">
                     <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Complete Address</label>
-                    <textarea name="address" placeholder="Enter your full address" class="form-input" required></textarea>
+                    <textarea name="address" rows="2" placeholder="Street, Colony, Area..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-sm resize-none" required></textarea>
                 </div>
 
-                <!-- NEW PINCODE FIELD -->
-                <div class="space-y-0">
-                    <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Pincode</label>
-                    <input type="text" name="pincode" placeholder="Enter Pincode" class="form-input" required>
-                </div>
-
-                <div class="space-y-0">
-                    <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Partner Role</label>
-                    <select name="role_id" class="form-input appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M5%207L10%2012L15%207%22%20stroke%3D%22%2364748B%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E')] bg-[length:20px] bg-[right_12px_center] bg-no-repeat" required>
-                        <option value="">Select Partnership Level</option>
-                        <?php foreach($roles as $role): ?>
-                            <option value="<?= $role['id'] ?>"><?= htmlspecialchars($role['role_name']) ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Pincode</label>
+                        <input type="text" name="pincode" placeholder="6-digit code" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-sm" required>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Partner Role</label>
+                        <select name="role_id" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-sm appearance-none bg-white" required>
+                            <option value="">Select Level</option>
+                            <?php foreach($roles as $role): ?>
+                                <option value="<?= $role['id'] ?>"><?= htmlspecialchars($role['role_name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="space-y-1">
                     <label class="text-[10px] uppercase font-bold text-slate-400 tracking-widest ml-1">Set Password</label>
-                    <input type="password" name="password" placeholder="••••••••" class="form-input" required>
+                    <input type="password" name="password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all outline-none text-sm" required>
                 </div>
 
-                <div class="pt-1    ">
-                    <button type="submit" class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold text-sm shadow-lg hover:bg-blue-600 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold text-sm shadow-lg hover:bg-blue-600 hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
                         Submit Application
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
                 </div>
             </form>
 
-            <div class="mt-1 pt-1 border-t border-slate-100 text-center">
+            <div class="mt-6 pt-6 border-t border-slate-100 text-center">
                 <p class="text-xs text-slate-400 font-medium tracking-tight">
                     Already a partner? <a href="login.php" class="text-blue-600 font-bold hover:underline">Sign In</a>
                 </p>
             </div>
         </div>
         
-        <div class="mt-6 flex justify-center gap-4 opacity-30">
+        <div class="mt-6 flex justify-center gap-4 opacity-40">
             <div class="text-[9px] font-black uppercase tracking-widest text-slate-500 border border-slate-300 px-2 py-1 rounded">SSL Secure</div>
             <div class="text-[9px] font-black uppercase tracking-widest text-slate-500 border border-slate-300 px-2 py-1 rounded">Identity Verified</div>
         </div>
