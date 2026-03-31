@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
         
-        <div class="mt-6 flex justify-center gap-4 opacity-40">
+        <div class="mt-6 flex justify-center  gap-4 opacity-40">
             <div class="text-[9px] font-black uppercase tracking-widest text-slate-500 border border-slate-300 px-2 py-1 rounded">SSL Secure</div>
             <div class="text-[9px] font-black uppercase tracking-widest text-slate-500 border border-slate-300 px-2 py-1 rounded">Identity Verified</div>
         </div>

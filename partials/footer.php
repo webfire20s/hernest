@@ -49,10 +49,10 @@
         <div>
             <h4 class="text-white font-black mb-10 uppercase text-[10px] tracking-[0.3em] opacity-50">Expertise</h4>
             <ul class="space-y-5 text-[13px] font-bold tracking-wide text-slate-500">
-                <li><a href="#" class="hover:text-white transition-colors">Business Capital</a></li>
-                <li><a href="#" class="hover:text-white transition-colors">Wealth Management</a></li>
-                <li><a href="#" class="hover:text-white transition-colors">Digital Strategy</a></li>
-                <li><a href="#" class="hover:text-white transition-colors">Insurance Solutions</a></li>
+                <li class="hover:text-white transition-colors">Business Capital</li>
+                <li class="hover:text-white transition-colors">Wealth Management</li>
+                <li class="hover:text-white transition-colors">Digital Strategy</li>
+                <li class="hover:text-white transition-colors">Insurance Solutions</li>
             </ul>
         </div>
 
