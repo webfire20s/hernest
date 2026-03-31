@@ -13,20 +13,19 @@ function sendMail($to, $subject, $message)
 
     try {
         $mail->isSMTP();
-        $mail->Host       = 'mail.hernestwold.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'info@hernestworld.com';
-        $mail->Password   = 'viF4icH2W^EKWNC4';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
-        $mail->CharSet = 'UTF-8';
+            $mail->Host       = 'mail.hernestworld.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'info@hernestworld.com';
+            $mail->Password   = 'Test@12345#$';
 
-        // 🔎 ENABLE DEBUG
-        //$mail->SMTPDebug = 2;
-        //$mail->Debugoutput = 'html';
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = 465;
+
+            $mail->SMTPDebug = 3;
+            $mail->Debugoutput = 'html';
 
         $mail->setFrom('info@hernestworld.com', 'HERNEST');
-        $mail->addAddress($to);
+        $mail->addAddress($to);   
 
         $mail->isHTML(true);
         $mail->Subject = $subject;
