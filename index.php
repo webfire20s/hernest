@@ -84,7 +84,7 @@
         </h1>
 
         <p class="max-w-2xl mx-auto text-base md:text-xl text-slate-400 mb-10 md:mb-14 leading-relaxed">
-            Join 10,000+ Partners. Distribute premium products and earn up to <span class="text-white font-bold">₹1 Lakh monthly</span> with the HERNEST Digital Stack.
+             <span class="text-white font-bold">Start & Scale Your Digital Business With HERNEST.</span>  Everything You Need - Products,Platform & Support - In One Powerful System.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center px-4 sm:px-0">
