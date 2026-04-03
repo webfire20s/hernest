@@ -72,7 +72,7 @@
     <div class="max-w-7xl mx-auto px-6 mt-32 pt-10 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-8">
         <div class="flex flex-col md:flex-row items-center gap-4 md:gap-10">
             <p class="text-[10px] text-slate-600 uppercase font-black tracking-[0.2em]">
-                &copy; <?= date('Y') ?> HERNEST INC.
+                &copy; <?= date('Y') ?> HERNEST WEALTH SOLUTIONS PVT LTD.
             </p>
             <div class="flex gap-6">
                 <a href="#" class="text-[10px] uppercase tracking-[0.2em] text-slate-600 font-black hover:text-white transition-colors">Privacy</a>

@@ -20,6 +20,19 @@ $roles = $pdo->query("
     SELECT id, role_name FROM roles ORDER BY hierarchy_level ASC
 ")->fetchAll();
 
+// Fetch existing commission data
+$existingCommissions = $pdo->prepare("
+    SELECT role_id, commission_type, commission_value 
+    FROM service_commissions 
+    WHERE service_id = ?
+");
+$existingCommissions->execute([$service_id]);
+
+$commissionMap = [];
+foreach ($existingCommissions as $row) {
+    $commissionMap[$row['role_id']] = $row;
+}
+
 $successMsg = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     foreach ($_POST['commission'] as $role_id => $data) {
@@ -97,24 +110,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <td class="py-5 px-2">
                                 <span class="font-bold text-slate-700"><?= $role['role_name'] ?></span>
                             </td>
+                            <?php 
+                                $existing = $commissionMap[$role['id']] ?? null;
+                                $selectedType = isset($existing['commission_type']) 
+                                    ? trim(strtolower($existing['commission_type'])) 
+                                    : 'fixed';
+                                $value = $existing['commission_value'] ?? '';
+                            ?>
+
                             <td class="py-5 px-2">
-                                <select name="commission[<?= $role['id'] ?>][type]" class="modern-select">
-                                    <option value="fixed">Fixed (₹)</option>
-                                    <option value="percentage">Percentage (%)</option>
+                                <select name="commission[<?= $role['id'] ?>][type]" class="modern-select commission-type">
+                                    <option value="fixed" <?= $selectedType === 'fixed' ? 'selected' : '' ?>>Fixed (₹)</option>
+                                    <option value="percentage" <?= $selectedType === 'percentage' ? 'selected' : '' ?>>Percentage (%)</option>
                                 </select>
                             </td>
+
                             <td class="py-5 px-2">
                                 <div class="flex items-center gap-3">
                                     <input type="number" step="0.01" 
-                                           name="commission[<?= $role['id'] ?>][value]" 
-                                           class="modern-input" 
-                                           placeholder="0.00" required>
+                                        name="commission[<?= $role['id'] ?>][value]" 
+                                        class="modern-input commission-input" 
+                                        value="<?= htmlspecialchars($value) ?>"
+                                        placeholder="0.00" required>
                                 </div>
                             </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-4">
+    
+                <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-100 flex justify-between items-center">
+                    <span class="text-sm font-bold text-emerald-700">Total Fixed (₹):</span>
+                    <span id="totalFixed" class="text-lg font-black text-emerald-900">0.00</span>
+                </div>
+
+                <div class="p-4 rounded-xl bg-indigo-50 border border-indigo-100 flex justify-between items-center">
+                    <span class="text-sm font-bold text-indigo-700">Total Percentage (%):</span>
+                    <span id="totalPercentage" class="text-lg font-black text-indigo-900">0.00</span>
+                </div>
+
             </div>
 
             <div class="mt-10 pt-6 border-t border-slate-100 flex justify-end">
@@ -126,5 +163,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 </div>
+<script>
+function calculateTotals() {
+    let totalFixed = 0;
+    let totalPercentage = 0;
+
+    document.querySelectorAll('.role-row').forEach(row => {
+        const typeEl = row.querySelector('.commission-type');
+        const inputEl = row.querySelector('.commission-input');
+
+        if (!typeEl || !inputEl) return;
+
+        const type = typeEl.value.trim().toLowerCase();
+        const val = parseFloat(inputEl.value);
+
+        if (!isNaN(val)) {
+            if (type === 'fixed') {
+                totalFixed += val;
+            } else if (type === 'percentage') {
+                totalPercentage += val;
+            }
+        }
+    });
+
+    document.getElementById('totalFixed').innerText = totalFixed.toFixed(2);
+    document.getElementById('totalPercentage').innerText = totalPercentage.toFixed(2);
+
+    // Visual warning
+    if (totalPercentage > 100) {
+        document.getElementById('totalPercentage').style.color = 'red';
+    } else {
+        document.getElementById('totalPercentage').style.color = '';
+    }
+}
+
+// IMPORTANT: Delay execution slightly to ensure DOM + PHP values are applied
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        calculateTotals();
+    }, 100);
+
+    document.querySelectorAll('.commission-input, .commission-type').forEach(el => {
+        el.addEventListener('input', calculateTotals);
+        el.addEventListener('change', calculateTotals);
+    });
+});
+</script>
 
 <?php require '../includes/footer.php'; ?>
