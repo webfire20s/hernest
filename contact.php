@@ -160,7 +160,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
                         <div class="group cursor-pointer">
                             <p class="text-slate-500 text-[9px] md:text-[10px] uppercase font-black tracking-widest mb-1 md:mb-2 group-hover:text-blue-400 transition-colors">Hotline</p>
-                            <p class="text-lg md:text-xl font-bold">+91 9829008838</p>
+                            <p class="text-lg md:text-xl font-bold">+91 8209384042</p>
                         </div>
 
                         <div class="group cursor-pointer">
