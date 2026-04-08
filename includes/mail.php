@@ -16,7 +16,7 @@ function sendMail($to, $subject, $message)
             $mail->Host       = 'mail.hernestworld.com';
             $mail->SMTPAuth   = true;
             $mail->Username   = 'info@hernestworld.com';
-            $mail->Password   = 'Test@12345#$';
+            $mail->Password   = 'Webfire#@12#';
 
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
