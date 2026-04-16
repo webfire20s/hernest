@@ -10,7 +10,7 @@ $roles->execute();
 $roles = $roles->fetchAll();
 
 $message = '';
-
+$isError = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $name = $_POST['full_name'];
@@ -22,11 +22,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $check = $pdo->prepare("SELECT id FROM users WHERE email = ?");
-    $check->execute([$email]);
+    $isError = false;
 
-    if ($check->fetch()) {
-        $message = "Email already exists.";
+    // Check in users table (already approved users)
+    $checkUser = $pdo->prepare("SELECT id FROM users WHERE email = ? OR phone = ?");
+    $checkUser->execute([$email, $phone]);
+
+    // Check in partner applications (pending or multiple submissions)
+    $checkApplication = $pdo->prepare("
+        SELECT id FROM partner_applications 
+        WHERE email = ? OR phone = ?
+    ");
+    $checkApplication->execute([$email, $phone]);
+
+    if ($checkUser->fetch()) {
+        $message = "You are already registered. Please login.";
+        $isError = true;
+
+    } elseif ($checkApplication->fetch()) {
+        $message = "You have already applied. Please wait for admin approval.";
+        $isError = true;
+
     } else {
 
         $insert = $pdo->prepare("

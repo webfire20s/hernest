@@ -71,6 +71,7 @@ $leads = $stmt->fetchAll();
                     <th>Service</th>
                     <th>Lead Value</th>
                     <th>Submitted By</th>
+                    <th>Date</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -112,6 +113,14 @@ $leads = $stmt->fetchAll();
                                     <?= strtoupper(substr($lead['submitted_by'], 0, 1)) ?>
                                 </div>
                                 <span class="text-xs font-medium text-slate-600"><?= $lead['submitted_by'] ?></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-xs font-semibold text-slate-600">
+                                <?= date('d M Y', strtotime($lead['created_at'])) ?>
+                            </div>
+                            <div class="text-[10px] text-slate-400">
+                                <?= date('h:i A', strtotime($lead['created_at'])) ?>
                             </div>
                         </td>
                         <td>
