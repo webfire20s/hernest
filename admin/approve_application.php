@@ -26,14 +26,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
     $insert = $pdo->prepare("
     INSERT INTO users
-    (parent_id,role_id,full_name,email,password_hash)
-    VALUES (?,?,?,?,?)
+    (parent_id,role_id,full_name,phone,email,password_hash)
+    VALUES (?,?,?,?,?,?)
     ");
 
     $insert->execute([
         $parent,
         $data['requested_role_id'],
         $data['full_name'],
+        $data['phone'],
         $data['email'],
         $data['password_hash']
     ]);
