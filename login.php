@@ -103,17 +103,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">Password</label>
-                    <input type="password" name="password" placeholder="••••••••" 
-                           class="w-full px-5 py-4 rounded-2xl bg-white input-field text-slate-900" required>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 ml-1">
+                        Password
+                    </label>
+
+                    <div class="relative">
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password"
+                            placeholder="••••••••"
+                            class="w-full px-5 py-4 pr-12 rounded-2xl bg-white input-field text-slate-900"
+                            required
+                        >
+
+                        <!-- Eye Button -->
+                        <button 
+                            type="button"
+                            onclick="togglePassword()"
+                            class="absolute inset-y-0 right-0 flex items-center px-4 text-slate-500 hover:text-slate-700"
+                        >
+                            👁
+                        </button>
+                    </div>
                 </div>
+
+                <script>
+                function togglePassword() {
+                    const passwordInput = document.getElementById("password");
+
+                    if (passwordInput.type === "password") {
+                        passwordInput.type = "text";
+                    } else {
+                        passwordInput.type = "password";
+                    }
+                }
+                </script>
 
                 <div class="flex items-center justify-between py-2">
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm text-slate-500">Remember me</span>
                     </label>
-                    <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700">Forgot?</a>
+                    <!-- <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700">Forgot?</a> -->
                 </div>
 
                 <button type="submit" class="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transform hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-blue-200">
