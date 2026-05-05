@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm text-slate-500">Remember me</span>
                     </label>
-                    <!-- <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-700">Forgot?</a> -->
+                    <a href="forgot_password.php" class="text-sm font-semibold text-blue-600 hover:text-blue-700">Forgot?</a>
                 </div>
 
                 <button type="submit" class="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transform hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-slate-200 hover:shadow-blue-200">
