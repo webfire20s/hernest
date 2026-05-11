@@ -20,11 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $name = $_POST['full_name'];
     $email = $_POST['email'];
+    $phone = $_POST['phone'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $insert = $pdo->prepare("
-        INSERT INTO users (parent_id, role_id, full_name, email, password_hash)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO users (parent_id, role_id, full_name, email, phone, password_hash)
+        VALUES (?, ?, ?, ?, ?, ?)
     ");
 
     $insert->execute([
@@ -32,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_POST['role_id'],
         $name,
         $email,
+        $phone,
         $password
     ]);
 
@@ -87,6 +89,11 @@ require 'sidebar.php';
             <div>
                 <label class="label-text">Login Email</label>
                 <input type="email" name="email" class="input-field" placeholder="Email Address" required>
+            </div>
+            
+            <div>
+                <label class="label-text">Phone Number</label>
+                <input type="text" name="phone" class="input-field" placeholder="Mobile Number" required>
             </div>
 
             <div>

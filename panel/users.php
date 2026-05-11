@@ -3,7 +3,7 @@ require '../includes/auth.php';
 
 // Logic Preserved: Fetching direct downline only
 $stmt = $pdo->prepare("
-    SELECT u.id, u.full_name, u.email, r.role_name
+    SELECT u.id, u.full_name, u.email, u.phone, r.role_name
     FROM users u
     JOIN roles r ON u.role_id = r.id
     WHERE u.parent_id = ?
@@ -79,6 +79,7 @@ require 'sidebar.php';
                 <tr>
                     <th>Team Member</th>
                     <th>Email Address</th>
+                    <th>Phone</th>
                     <th>Access Level</th>
                     <th class="text-right">Action</th>
                 </tr>
@@ -96,6 +97,11 @@ require 'sidebar.php';
                     </td>
                     <td>
                         <span class="text-sm text-slate-500 font-medium"><?= htmlspecialchars($user['email']) ?></span>
+                    </td>
+                    <td>
+                        <span class="text-sm text-slate-500 font-medium">
+                            <?= htmlspecialchars($user['phone'] ?? 'N/A') ?>
+                        </span>
                     </td>
                     <td>
                         <span class="role-badge"><?= htmlspecialchars($user['role_name']) ?></span>
